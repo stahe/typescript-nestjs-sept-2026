@@ -1,0 +1,1522 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Introduction au langage TypeScript et au framework web NestJS par l’exemple">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/typescript-nestjs-sept-2026/les-fonctions-http-de-typescript.html">
+      
+      
+        <link rel="prev" href="installation-dun-serveur-nestjs.html">
+      
+      
+        <link rel="next" href="clients-http-du-service-de-calcul-de-limpot.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>5. Les fonctions HTTP de TypeScript - Introduction au langage TypeScript et au framework web NestJS par l’exemple</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "Introduction au langage TypeScript et au framework web NestJS par l’exemple";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#5-les-fonctions-http-de-typescript" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Introduction au langage TypeScript et au framework web NestJS par l’exemple" class="md-header__button md-logo" aria-label="Introduction au langage TypeScript et au framework web NestJS par l’exemple" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Introduction au langage TypeScript et au framework web NestJS par l’exemple
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              5. Les fonctions HTTP de TypeScript
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Passer en mode sombre"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer en mode sombre" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Passer en mode clair"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer en mode clair" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/typescript-nestjs-sept-2026" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Introduction au langage TypeScript et au framework web NestJS par l’exemple" class="md-nav__button md-logo" aria-label="Introduction au langage TypeScript et au framework web NestJS par l’exemple" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Introduction au langage TypeScript et au framework web NestJS par l’exemple
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/typescript-nestjs-sept-2026" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accueil
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="introduction.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation-dun-environnement-de-travail.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Installation d'un environnement de travail
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="les-fondamentaux.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Les fondamentaux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation-dun-serveur-nestjs.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Installation d’un serveur NestJS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Les fonctions HTTP de TypeScript
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="les-fonctions-http-de-typescript.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Les fonctions HTTP de TypeScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#51-choix-des-outils-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1. Choix des outils HTTP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#52-le-serveur-de-calcul-de-limpot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2. Le serveur de calcul de l&#x27;impôt
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#53-script-fetch-01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3. script [fetch-01]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#54-script-fetch-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4. script [fetch-02]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#55-script-axios-01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5. script [axios-01]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#56-script-axios-03-authentification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.6. script [axios-03] — authentification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#57-script-axios-04-gestion-du-cookie-de-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.7. script [axios-04] — gestion du cookie de session
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#58-script-fetch-03-annulation-de-requetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.8. script [fetch-03] — annulation de requêtes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="clients-http-du-service-de-calcul-de-limpot.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Clients HTTP du service de calcul de l'impôt
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="acces-aux-bases-de-donnees.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Accès aux bases de données
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="introduction-au-framework-web-nestjs.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Introduction au framework Web NestJS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="etude-de-cas--le-serveur-de-calcul-de-limpot-en-nestjs.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Étude de cas : le serveur de calcul de l'impôt en NestJS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="conclusion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Conclusion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><span id="refheadingtoc172643055526765" name="refheadingtoc172643055526765" class="odt-bookmark-anchor"></span></p>
+<h1 id="5-les-fonctions-http-de-typescript">5. <span style="color: #2e74b5">Les fonctions HTTP de TypeScript</span></h1>
+<p>Nous présentons ici deux façons de faire des requêtes HTTP en TypeScript : la fonction <strong><span style="color: #9a3412">[fetch]</span></strong>, native depuis Node 18, et la bibliothèque tierce <strong><span style="color: #9a3412">[axios]</span></strong>. Les scripts de ce chapitre se trouvent dans le dossier <strong><span style="color: #9a3412">[http]</span></strong> du projet.</p>
+<p><img src="images/100000000000013A0000021279866603.png" width="157" height="265" style="width:4.154cm;height:7.011cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000013A0000021279866603.png" /></p>
+<h2 id="51-choix-des-outils-http">5.1. <span style="color: #2e74b5">Choix des outils HTTP</span></h2>
+<p>En 2019, <span style="color: #9a3412">fetch</span> n&#x27;était pas encore implémentée par node.js, et le document original recommandait le package <span style="color: #9a3412">node-fetch</span>. Depuis Node 18 (2022), <strong><span style="color: #9a3412">[fetch]</span></strong> est une fonction <strong>globale native</strong>, standardisée par le WHATWG Fetch standard — plus besoin de l&#x27;importer.</p>
+<p><strong><span style="color: #9a3412">[axios]</span></strong> reste néanmoins une bibliothèque intéressante : compatible aussi bien avec node.js qu&#x27;avec les navigateurs, elle offre une API un peu plus riche (intercepteurs, sérialisation JSON automatique, gestion d&#x27;erreurs uniformisée). Nous présentons les deux, avec le même exemple, pour montrer que la démarche de codage est analogue.</p>
+<h2 id="52-le-serveur-de-calcul-de-limpot">5.2. <span style="color: #2e74b5">Le serveur de calcul de l&#x27;impôt</span></h2>
+<p>Ce chapitre, comme les suivants, fait référence au serveur NestJS installé précédemment. L’architecture de test est la suivante :</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000045700000168093488D1.png" width="521" height="169" style="display:inline-block; margin:4px;width:13.797cm;height:4.47cm;" class="odt-zoomable" data-zoom-src="images/100000000000045700000168093488D1.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td></tr></table>
+
+<p>En [A-B], un code Javascript exécuté par [node.js] va faire des requêtes [1] à l’application web [C]. Celle-ci lui enverra des réponses jSON (4). Le code Javascript du client peut être organisé en couches <strong>[UI, métier, dao]</strong> (UI : User Interface). C’est ce que nous ferons ultérieurement. Pour exécuter les scripts qui suivent, votre serveur NestJS doit être lancé.</p>
+<h2 id="53-script-fetch-01">5.3. <span style="color: #2e74b5">script [fetch-01]</span></h2>
+<p>Ce script utilise <strong><span style="color: #9a3412">[fetch]</span></strong> pour initialiser une session JSON avec le serveur de calcul d&#x27;impôt :</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-javascript">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#a31515">&#x27;use strict&#x27;;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// [mise à jour 2026] en 2019, il fallait installer le package [node-fetch] pour disposer</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// de la fonction [fetch] côté node. Depuis Node 18 (2022), [fetch] est une fonction</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// globale native, standardisée par le &quot;WHATWG Fetch standard&quot; : plus besoin de l&#x27;importer.</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// imports</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#8f08c4">import</span> <span style="color:#1f377f">qs</span> <span style="color:#8f08c4">from</span> <span style="color:#a31515">&#x27;qs&#x27;</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#8f08c4">import</span> { <span style="color:#1f377f">sprintf</span> } <span style="color:#8f08c4">from</span> <span style="color:#a31515">&#x27;sprintf-js&#x27;</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#8f08c4">import</span> <span style="color:#1f377f">moment</span> <span style="color:#8f08c4">from</span> <span style="color:#a31515">&#x27;moment&#x27;</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// URL de base du serveur de calcul d&#x27;impôt</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">const</span> <span style="color:#1f377f">baseUrl</span>: <span style="color:#2b91af">string</span> = <span style="color:#a31515">&#x27;</span><span style="background-color:#fff5ce;color:#a31515">http://localhost:</span><span style="background-color:#fff5ce;color:#a31515">3000</span><span style="background-color:#fff5ce;color:#a31515">/main.php?</span><span style="color:#a31515">&#x27;</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// init session</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">async</span> <span style="color:#0000ff">function</span> <span style="background-color:#fff5ce;color:#74531f">initSession</span>(): <span style="color:#2b91af">Promise</span>&lt;<span style="color:#2b91af">any</span>&gt; {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008000">// [mise à jour 2026] le [fetch] natif ne connaît pas l&#x27;option [timeout].</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008000">// pour limiter la durée d&#x27;attente, on lui fournit un [signal] produit par</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008000">// [AbortSignal.timeout(ms)] (disponible depuis Node 17.3) : passé ce délai,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008000">// la requête est automatiquement annulée et [fetch] lève une erreur.</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#0000ff">const</span> <span style="color:#1f377f">options</span>: <span style="color:#2b91af">RequestInit</span> = {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#1f377f">method</span>: <span style="color:#a31515">&quot;GET&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#1f377f">signal</span>: <span style="color:#2b91af">AbortSignal</span>.<span style="color:#74531f">timeout</span>(2000)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  };</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008000">// exécution de la requête HTTP [get /main.php?action=init-session&amp;type=json]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#0000ff">let</span> <span style="color:#1f377f">débutFetch</span>: <span style="color:#2b91af">moment</span>.<span style="color:#2b91af">Moment</span> | <span style="color:#2b91af">undefined</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#8f08c4">try</span> {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// requête asynchrone - [fetch] rend une promesse</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#1f377f">débutFetch</span> = <span style="color:#74531f">moment</span>(<span style="color:#2b91af">Date</span>.<span style="color:#74531f">now</span>());</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">const</span> <span style="color:#1f377f">response</span> = <span style="background-color:#fff5ce;color:#8f08c4">await</span> <span style="color:#74531f">fetch</span>(<span style="color:#1f377f">baseUrl</span> + <span style="color:#1f377f">qs</span>.<span style="color:#74531f">stringify</span>({</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="color:#1f377f">action</span>: <span style="color:#a31515">&#x27;init-session&#x27;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="color:#1f377f">type</span>: <span style="color:#a31515">&#x27;json&#x27;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }), <span style="color:#1f377f">options</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// [response] est l&#x27;ensemble de la réponse HTTP du serveur (entêtes HTTP + réponse elle-même)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// on affiche cette réponse pour voir sa structure</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#2b91af">console</span>.<span style="color:#74531f">log</span>(<span style="color:#74531f">sprintf</span>(<span style="color:#a31515">&quot;réponse fetch formatée en json,=%j, %s&quot;</span>, <span style="color:#1f377f">response</span>, <span style="color:#74531f">heure</span>(<span style="color:#1f377f">débutFetch</span>)));</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#2b91af">console</span>.<span style="color:#74531f">log</span>(<span style="color:#a31515">&quot;réponse fetch en javascript=&quot;</span>, <span style="color:#1f377f">response</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// on peut avoir aux entêtes HTTP</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#2b91af">console</span>.<span style="color:#74531f">log</span>(<span style="color:#a31515">&quot;entêtes de la réponse=&quot;</span>, <span style="color:#1f377f">response</span>.<span style="color:#1f377f">headers</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// si réponse de type application / json, la réponse json du serveur est obtenue avec la fonction asynchrone [response.json()]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// dans ce cas le code appelant obtient un objet [Promise]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// [await] permet d&#x27;obtenir la réponse [json] du serveur plutôt que sa promesse</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">const</span> <span style="color:#1f377f">débutJson</span> = <span style="color:#74531f">moment</span>(<span style="color:#2b91af">Date</span>.<span style="color:#74531f">now</span>());</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">const</span> <span style="color:#1f377f">objet</span> = <span style="background-color:#fff5ce;color:#8f08c4">await</span> <span style="color:#1f377f">response</span>.<span style="color:#74531f">json</span>();</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#2b91af">console</span>.<span style="color:#74531f">log</span>(<span style="color:#74531f">sprintf</span>(<span style="color:#a31515">&quot;réponse json=%j, type=%s, %s&quot;</span>, <span style="color:#1f377f">objet</span>, <span style="color:#0000ff">typeof</span> (<span style="color:#1f377f">objet</span>), <span style="color:#74531f">heure</span>(<span style="color:#1f377f">débutJson</span>)));</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#8f08c4">return</span> <span style="color:#1f377f">objet</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// si réponse de type text / plain, la réponse texte du serveur est obtenue avec [response.text()]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// dans ce cas le code appelant obtient un objet [Promise]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// [await] permet d&#x27;obtenir la réponse [texte] du serveur plutôt que sa promesse</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// const text = await response.text();</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// console.log(&quot;réponse texte=&quot;, text);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// return text;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  } <span style="color:#8f08c4">catch</span> (<span style="color:#1f377f">error</span>: <span style="color:#2b91af">any</span>) {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// on est là parce que le serveur a envoyé un code d&#x27;erreur [404 Not Found, ...] accompagné d&#x27;un corps vide - on affiche l&#x27;erreur pour voir sa structure</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// ou bien parce que le client [fetch] a lancé une exception (réseau inaccesible, ...)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// on affiche la structure de l&#x27;erreur</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#2b91af">console</span>.<span style="color:#74531f">log</span>(<span style="color:#74531f">sprintf</span>(<span style="color:#a31515">&quot;error fetch en json=%j, %s&quot;</span>, <span style="color:#1f377f">error</span>, <span style="color:#74531f">heure</span>(<span style="color:#1f377f">débutFetch</span>)));</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#2b91af">console</span>.<span style="color:#74531f">log</span>(<span style="color:#a31515">&quot;error fetch en javascript=&quot;</span>, <span style="color:#0000ff">typeof</span> (<span style="color:#1f377f">error</span>), <span style="color:#1f377f">error</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// on lance le msg d&#x27;erreur reçu</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#8f08c4">throw</span> <span style="color:#1f377f">error</span>.<span style="color:#1f377f">message</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// la fonction main exécute la fonction asynchrone [initSession]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">async</span> <span style="color:#0000ff">function</span> <span style="color:#74531f">main</span>(): <span style="color:#2b91af">Promise</span>&lt;<span style="color:#2b91af">void</span>&gt; {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#8f08c4">try</span> {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#2b91af">console</span>.<span style="color:#74531f">log</span>(<span style="color:#a31515">&quot;requête HTTP vers le serveur en cours ---------------------------------------------&quot;</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">const</span> <span style="color:#1f377f">response</span> = <span style="color:#8f08c4">await</span> <span style="color:#74531f">initSession</span>();</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#2b91af">console</span>.<span style="color:#74531f">log</span>(<span style="color:#a31515">&quot;succès ---------------------------------------------&quot;</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#2b91af">console</span>.<span style="color:#74531f">log</span>(<span style="color:#a31515">&quot;réponse=&quot;</span>, <span style="color:#1f377f">response</span>, <span style="color:#0000ff">typeof</span> (<span style="color:#1f377f">response</span>))</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  } <span style="color:#8f08c4">catch</span> (<span style="color:#1f377f">error</span>) {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#2b91af">console</span>.<span style="color:#74531f">log</span>(<span style="color:#a31515">&quot;erreur ---------------------------------------------&quot;</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#2b91af">console</span>.<span style="color:#74531f">log</span>(<span style="color:#a31515">&quot;erreur=&quot;</span>, <span style="color:#1f377f">error</span>, <span style="color:#0000ff">typeof</span> (<span style="color:#1f377f">error</span>));</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// test</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#74531f">main</span>();</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// utilitaire d&#x27;affichage heure et durée</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">function</span> <span style="color:#74531f">heure</span>(<span style="color:#1f377f">début</span>?: <span style="color:#2b91af">moment</span>.<span style="color:#2b91af">Moment</span>): <span style="color:#2b91af">string</span> {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008000">// heure du moment courant</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#0000ff">const</span> <span style="color:#1f377f">now</span> = <span style="color:#74531f">moment</span>(<span style="color:#2b91af">Date</span>.<span style="color:#74531f">now</span>());</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008000">// formatage heure</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#0000ff">let</span> <span style="color:#1f377f">result</span> = <span style="color:#a31515">&quot;heure=&quot;</span> + <span style="color:#1f377f">now</span>.<span style="color:#74531f">format</span>(<span style="color:#a31515">&quot;HH:mm:ss:SSS&quot;</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008000">// faut-il calculer une durée ?</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#8f08c4">if</span> (<span style="color:#1f377f">début</span>) {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">const</span> <span style="color:#1f377f">durée</span> = <span style="color:#1f377f">now</span>.<span style="color:#74531f">valueOf</span>() - <span style="color:#1f377f">début</span>.<span style="color:#74531f">valueOf</span>();</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">const</span> <span style="color:#1f377f">milliseconds</span> = <span style="color:#1f377f">durée</span> % 1000;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">const</span> <span style="color:#1f377f">seconds</span> = Math.<span style="color:#74531f">floor</span>(<span style="color:#1f377f">durée</span> / 1000);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// formatage heure + durée</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#1f377f">result</span> = <span style="color:#1f377f">result</span> + <span style="color:#74531f">sprintf</span>(<span style="color:#a31515">&quot;, durée= %s seconde(s) et %s millisecondes&quot;</span>, <span style="color:#1f377f">seconds</span>, <span style="color:#1f377f">milliseconds</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008000">// résultat</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#8f08c4">return</span> <span style="color:#1f377f">result</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<ul>
+<li>lignes 3-5 : <strong><span style="color: #9a3412">[mise à jour 2026]</span></strong> — commentaire signalant que <span style="color: #9a3412">fetch</span> est désormais natif, contrairement à 2019 ;</li>
+<li>ligne 13 : cette ligne est importante. Elle indique l’entête des URL que le script va interroger. Celui-ci sera complété par d’éventuels paramètres. Ici nous avons utilisé la configuration définie au paragraphe <mark style="background-color: #fff5ce"><a href="installation-dun-serveur-nestjs.html#refheadingtoc169713055526765">Installation d’un serveur NestJS</a></mark> ;</li>
+<li>ligne 22 : <span style="color: #9a3412">AbortSignal.timeout(2000)</span> — remplace l&#x27;option <span style="color: #9a3412">timeout</span> de <span style="color: #9a3412">node-fetch</span> (qui n&#x27;existe pas sur <span style="color: #9a3412">fetch</span> natif) : au-delà de 2 secondes, la requête est automatiquement annulée ;</li>
+<li>ligne 29 : <span style="color: #9a3412">fetch(URL, options)</span> — la syntaxe reste celle du fetch standard : une URL, et un objet d&#x27;options (méthode, signal d&#x27;annulation...) ;</li>
+<li>lignes 30-31 : on initie une session jSON ;</li>
+<li>ligne 36 : on affiche l’intégralité de la réponse du serveur ;</li>
+<li>ligne 38 : on affiche l’entête de la réponse appelé “headers” ;</li>
+<li>ligne 43 : <span style="color: #9a3412">await response.json()</span> — extrait le corps JSON de la réponse ; c&#x27;est une opération elle-même asynchrone (<span style="color: #9a3412">response</span> peut être un flux en cours de réception) ;</li>
+<li>ligne 52 : <span style="color: #9a3412">fetch</span> ne lance une exception que si la requête HTTP <strong>n&#x27;a pu aboutir</strong> (réseau inaccessible, timeout...). Si une réponse est reçue, même avec un code d&#x27;erreur (400, 500...), <span style="color: #9a3412">fetch</span> ne lance <strong>pas</strong> d&#x27;exception : la réponse est disponible normalement, ligne 38.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>npx tsx http/fetch-01.ts
+</code></pre></div>
+<p><em>Résultat de l&#x27;exécution :</em></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-typescript">
+<span class="odt-code-line"><span class="odt-code-line-content">requête HTTP vers le serveur en cours ---------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">réponse fetch formatée en json,={}, heure=12:36:31:319, durée= 0 seconde(s) et 93 millisecondes</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">réponse fetch en javascript= Response {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  status: <span style="background-color:#fff5ce">200</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  statusText: &#x27;OK&#x27;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  headers: Headers {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    date: &#x27;Sun, 06 Sep 2026 10:36:31 GMT&#x27;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    server: &#x27;Apache/2.4.66 (Win64) OpenSSL/3.0.18 PHP/8.3.30&#x27;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    &#x27;x-powered-by&#x27;: &#x27;PHP/8.3.30&#x27;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    &#x27;cache-control&#x27;: &#x27;max-age=0, private, must-revalidate, no-cache, private&#x27;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="background-color:#fff5ce">&#x27;set-cookie&#x27;: &#x27;PHPSESSID=9u1rb9euj0m6f18efm7b5m952t; path=/&#x27;,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    &#x27;content-length&#x27;: &#x27;86&#x27;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    connection: &#x27;close&#x27;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    &#x27;content-type&#x27;: &#x27;application/json&#x27;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  },</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  body: ReadableStream { locked: false, state: &#x27;readable&#x27;, supportsBYOB: true },</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  bodyUsed: false,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  ok: true,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  redirected: false,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  type: &#x27;basic&#x27;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  url: &#x27;<span style="background-color:#fff5ce">http://localhost/main.php?action=init-session&amp;type=json</span>&#x27;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">entêtes de la réponse= Headers {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  date: &#x27;Sun, 06 Sep 2026 10:36:31 GMT&#x27;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  server: &#x27;Apache/2.4.66 (Win64) OpenSSL/3.0.18 PHP/8.3.30&#x27;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  &#x27;x-powered-by&#x27;: &#x27;PHP/8.3.30&#x27;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  &#x27;cache-control&#x27;: &#x27;max-age=0, private, must-revalidate, no-cache, private&#x27;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="background-color:#fff5ce">&#x27;set-cookie&#x27;: &#x27;PHPSESSID=9u1rb9euj0m6f18efm7b5m952t; path=/&#x27;,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  &#x27;content-length&#x27;: &#x27;86&#x27;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  connection: &#x27;close&#x27;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  &#x27;content-type&#x27;: &#x27;application/json&#x27;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">réponse json=<span style="background-color:#fff5ce">{&quot;action&quot;:&quot;init-session&quot;,&quot;état&quot;:700,&quot;réponse&quot;:&quot;session démarrée avec type [json]&quot;}</span>, type=object, heure=12:36:31:323, durée= 0 seconde(s) et 2 millisecondes</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">succès ---------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">réponse= {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  action: &#x27;init-session&#x27;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  &#x27;état&#x27;: 700,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  &#x27;réponse&#x27;: &#x27;session démarrée avec type [json]&#x27;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">} object</span></span>
+</code></pre></div>
+
+<ul>
+<li>lignes 3-22 : la totalité de la réponse du serveur ;</li>
+<li>ligne 4 :  le code 200 signifie que le serveur a pu traiter l’URL demandée. Celle-ci est indiquée à la ligne 21. Nous avons déjà utilisé cette URL avec le client <a href="#17tests-du-serveur-de-calcul-de-limpotoutline">Postman</a> ;</li>
+<li>lignes 23-32 : l’entête (headers) de la réponse. Il donne des informations sur la réponse qui va suivre. Ainsi ligne 29, le serveur indique que cette réponse a 86 caractères ;</li>
+<li>ligne 28 : le serveur a envoyé un cookie de session. Celui-ci permet à un client de maintenir sur le serveur une mémoire appelée <strong>session</strong>. Celle-ci est gérée par le serveur web. Après avoir reçu ce cookie de session, qui est en fait son identifiant auprès du serveur, le client doit le renvoyer à chaque nouvelle requête. Notez la forme de ce cookie de session. Nous allons prochainement le récupérer dans un client TypeScript.    </li>
+<li>ligne 33 : la réponse jSON du serveur ;</li>
+</ul>
+<h2 id="54-script-fetch-02">5.4. <span style="color: #2e74b5">script [fetch-02]</span></h2>
+<p>Ce script reprend <span style="color: #9a3412">fetch-01</span> en le débarrassant de tous les détails de démonstration inutiles à l&#x27;usage courant :</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-javascript">
+<span class="odt-code-line"><span class="odt-code-line-content">&#x27;use strict&#x27;;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// [mise à jour 2026] [fetch] est désormais une fonction globale native de node</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// (depuis Node 18) : plus besoin d&#x27;importer le package [node-fetch] comme en 2019.</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// imports</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">import qs from &#x27;qs&#x27;;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// URL de base du serveur de calcul d&#x27;impôt</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">const baseUrl: string = &#x27;<span style="background-color:#fff5ce">http://localhost:</span><span style="background-color:#fff5ce">3000</span><span style="background-color:#fff5ce">/main.php?</span>&#x27;;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// init session</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">async function initSession(): Promise&lt;any&gt; {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  // options de la requête HHTP [get /main.php?action=init-session&amp;type=json]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  // [AbortSignal.timeout(ms)] remplace l&#x27;option [timeout] qui n&#x27;existe pas sur fetch natif</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  const options: RequestInit = {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    method: &quot;GET&quot;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    signal: AbortSignal.timeout(2000)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  };</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  // exécution de la requête HTTP [get /main.php?action=init-session&amp;type=json]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  const response = await fetch(baseUrl + qs.stringify({</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="background-color:#fff5ce">action</span>: &#x27;init-session&#x27;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="background-color:#fff5ce">type</span>: &#x27;json&#x27;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }), options);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  // résultat reçu en jSON</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  return await response.json();</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// la fonction main exécute la fonction asynchrone [initSession]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">async function main(): Promise&lt;void&gt; {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  try {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    console.log(&quot;requête HTTP vers le serveur en cours ---------------------------------------------&quot;);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    const response = await initSession();</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    console.log(&quot;succès ---------------------------------------------&quot;);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    console.log(&quot;réponse=&quot;, response)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  } catch (error: any) {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    console.log(&quot;erreur ---------------------------------------------&quot;);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    console.log(&quot;erreur=&quot;, error.message);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// test</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">main();</span></span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>npx tsx http/fetch-02.ts
+</code></pre></div>
+<p><em>Résultat de l&#x27;exécution :</em></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nx">requête</span><span class="w"> </span><span class="nx">HTTP</span><span class="w"> </span><span class="nx">vers</span><span class="w"> </span><span class="nx">le</span><span class="w"> </span><span class="nx">serveur</span><span class="w"> </span><span class="nx">en</span><span class="w"> </span><span class="nx">cours</span><span class="w"> </span><span class="o">---------------------------------------------</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="nx">succès</span><span class="w"> </span><span class="o">---------------------------------------------</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="nx">réponse</span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">  </span><span class="nx">action</span><span class="o">:</span><span class="w"> </span><span class="s1">'init-session'</span><span class="p">,</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">  </span><span class="s1">'état'</span><span class="o">:</span><span class="w"> </span><span class="mf">700</span><span class="p">,</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">  </span><span class="s1">'réponse'</span><span class="o">:</span><span class="w"> </span><span class="s1">'session démarrée avec type [json]'</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="55-script-axios-01">5.5. <span style="color: #2e74b5">script [axios-01]</span></h2>
+<p>Même exemple, avec <strong><span style="color: #9a3412">[axios]</span></strong> :</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">&#x27;use strict&#x27;;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">import axios, { AxiosInstance, AxiosRequestConfig } from &#x27;axios&#x27;;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// configuration par défaut d&#x27;axios</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">axios.defaults.timeout = 2000;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">axios.defaults.baseURL = &#x27;<span style="background-color:#fff5ce">http://localhost:</span><span style="background-color:#fff5ce">3000</span><span style="background-color:#fff5ce">/</span>&#x27;;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// init session</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">async function initSession(axios: AxiosInstance): Promise&lt;any&gt; {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  // options de la requête HHTP [get /main.php?action=init-session&amp;type=json]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  const <span style="background-color:#fff5ce">options</span>: AxiosRequestConfig = {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // [mise à jour TypeScript] axios.request() n&#x27;accepte, côté typage, qu&#x27;un seul</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // argument de configuration : l&#x27;URL doit donc figurer dans [options.url]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // plutôt qu&#x27;en 1er paramètre séparé de request()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    url: &#x27;<span style="background-color:#fff5ce">main.php</span>&#x27;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    method: &quot;GET&quot;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // paramètres de l&#x27;URL</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    params: {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="background-color:#fff5ce">action</span>: &#x27;init-session&#x27;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="background-color:#fff5ce">type</span>: &#x27;x&#x27;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  };</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  // exécution de la requête HTTP [get /main.php?action=init-session&amp;type=json]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  try {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // requête asynchrone</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    const response = <span style="background-color:#fff5ce">await</span> axios.request(options);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // response est l&#x27;ensemble de la réponse HTTP du serveur (entêtes HTTP + réponse elle-même)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // on affiche cette réponse pour voir sa structure</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // console.log(&quot;réponse axios=&quot;, response);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // la réponse du serveur est dans [response.data]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    return <span style="background-color:#fff5ce">response.data</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  } catch (error: any) {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // on est là parce que le serveur a envoyé un code d&#x27;erreur [404 Not Found, 500 Internal Server Error, ...]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // le paramètre [error] est une instance d&#x27;exception - elle peut avoir diverses formes</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // on l&#x27;affiche pour voir sa structure</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // console.log(&quot;axios error=&quot;, typeof (error), error);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    if (error.response) {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      // le serveur a signalé une erreur dans le statut HTTP mais il a aussi envoyé une réponse</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      // alors celle-ci est trouvée dans [error.response.data]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      // on sait que le serveur envoie des réponses jSON de structure {action, état, réponse}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      // et qu&#x27;en cas d&#x27;erreur, le msg d&#x27;erreur est dans [réponse]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      return <span style="background-color:#fff5ce">error.response.data</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    } else {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      // on lance l&#x27;erreur</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      throw error;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// la fonction main exécute la fonction asynchrone [initSession]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">async function main(): Promise&lt;void&gt; {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  try {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    console.log(&quot;requête HTTP vers le serveur en cours ---------------------------------------------&quot;);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    const response = await initSession(axios);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    console.log(&quot;succès ---------------------------------------------&quot;);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    console.log(&quot;réponse=&quot;, response, typeof (response))</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  } catch (error: any) {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    console.log(&quot;erreur ---------------------------------------------&quot;);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    console.log(&quot;erreur=&quot;, error.message);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// test</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">main();</span></span>
+</code></pre></div>
+
+<ul>
+<li>l’URL interrogée est construite à partir des informations des lignes 6, 16, 19 et 20 ;</li>
+<li>ligne 26 : <span style="color: #9a3412">axios.request(options)</span> — contrairement à <span style="color: #9a3412">fetch</span>, l&#x27;URL et les options sont regroupées dans un seul objet de configuration (ligne 11) ;</li>
+<li>ligne 37 : <span style="color: #9a3412">error.response</span> — si le serveur a répondu (même avec un code d&#x27;erreur), axios place cette réponse dans <span style="color: #9a3412">error.response</span>, accessible dans le <span style="color: #9a3412">catch</span> — contrairement à <span style="color: #9a3412">fetch</span>, axios <strong>lance systématiquement une exception</strong> dès que le code HTTP n&#x27;est pas un succès (2xx) ;</li>
+<li>ligne 31 : la réponse réussie est dans <span style="color: #9a3412">response.data</span> — axios fait automatiquement l&#x27;extraction JSON, pas besoin d&#x27;un <span style="color: #9a3412">await response.json()</span> séparé comme avec <span style="color: #9a3412">fetch</span>.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>npx tsx http/axios-01.ts
+</code></pre></div>
+<p><em>Résultat de l&#x27;exécution :</em></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span>
+<span class="normal"><a href="#__codelineno-4-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nx">requête</span><span class="w"> </span><span class="nx">HTTP</span><span class="w"> </span><span class="nx">vers</span><span class="w"> </span><span class="nx">le</span><span class="w"> </span><span class="nx">serveur</span><span class="w"> </span><span class="nx">en</span><span class="w"> </span><span class="nx">cours</span><span class="w"> </span><span class="o">---------------------------------------------</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="nx">succès</span><span class="w"> </span><span class="o">---------------------------------------------</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="nx">réponse</span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">  </span><span class="nx">action</span><span class="o">:</span><span class="w"> </span><span class="s1">'init-session'</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">  </span><span class="s1">'état'</span><span class="o">:</span><span class="w"> </span><span class="mf">700</span><span class="p">,</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">  </span><span class="s1">'réponse'</span><span class="o">:</span><span class="w"> </span><span class="s1">'session démarrée avec type [json]'</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="p">}</span><span class="w"> </span><span class="nx">object</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="56-script-axios-03-authentification">5.6. <span style="color: #2e74b5">script [axios-03] — authentification</span></h2>
+<p>Ce script enchaîne deux requêtes : <span style="color: #9a3412">init-session</span>, puis <span style="color: #9a3412">authentifier-utilisateur</span> en <strong><span style="color: #9a3412">[POST]</span></strong>, avec un corps encodé par la bibliothèque <strong><span style="color: #9a3412">[qs]</span></strong> :</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">&#x27;use strict&#x27;;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">import axios, { AxiosInstance, AxiosRequestConfig } from &#x27;axios&#x27;;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">import qs from &#x27;qs&#x27;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// configuration axios</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">axios.defaults.timeout = 2000;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">axios.defaults.baseURL = &#x27;<span style="background-color:#fff5ce">http://localhost:</span><span style="background-color:#fff5ce">3000</span><span style="background-color:#fff5ce">/</span>&#x27;;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// init session</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">async function initSession(axios: AxiosInstance): Promise&lt;any&gt; {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  // options de la requête HHTP [get /main.php?action=init-session&amp;type=json]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  const <span style="background-color:#fff5ce">options</span>: AxiosRequestConfig = {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // [mise à jour TypeScript] URL incluse dans [options.url] (axios.request() typé n&#x27;accepte qu&#x27;un seul argument)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    url: &#x27;<span style="background-color:#fff5ce">main.php</span>&#x27;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    method: &quot;GET&quot;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // paramètres de l&#x27;URL</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    params: {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="background-color:#fff5ce">action</span>: &#x27;init-session&#x27;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="background-color:#fff5ce">type</span>: &#x27;json&#x27;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  };</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  try {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // exécution de la requête HTTP [get /main.php?action=init-session&amp;type=json]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    const response = <span style="background-color:#fff5ce">await</span> axios.request(options);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // la réponse du serveur est dans [response.data]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    return response.data;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  } catch (error: any) {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // réponse du serveur</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    if (error.response) {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      // la réponse jSON est dans [error.response.data]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      return error.response.data;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    } else {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      // on relance l&#x27;erreur</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      throw error;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">async function authentifierUtilisateur(axios: AxiosInstance, user: string, password: string): Promise&lt;any&gt; {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="background-color:#fff5ce">// options de la requête HHTP [post /main.php?action=authentifier-utilisateur]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  const <span style="background-color:#fff5ce">options</span>: AxiosRequestConfig = {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // [mise à jour TypeScript] URL incluse dans [options.url]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    url: &#x27;<span style="background-color:#fff5ce">main.php</span>&#x27;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    method: &quot;<span style="background-color:#fff5ce">POST</span>&quot;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    headers: {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      &#x27;Content-type&#x27;: &#x27;application/x-www-form-urlencoded&#x27;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    },</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // corps du POST</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    data: qs.stringify({</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="background-color:#fff5ce">user</span>: user,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="background-color:#fff5ce">password</span>: password</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }),</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // paramètres de l&#x27;URL</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    params: {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="background-color:#fff5ce">action</span>: &#x27;authentifier-utilisateur&#x27;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  };</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  try {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="background-color:#fff5ce">// exécution de la requête HTTP [post /main.php?action=authentifier-utilisateur]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    const response = await axios.request(options);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // la réponse du serveur est dans [response.data]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    return response.data;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  } catch (error: any) {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // réponse du serveur</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    if (error.response) {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      // la réponse jSON est dans [error.response.data]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      return error.response.data;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    } else {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      // on relance l&#x27;erreur</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      throw error;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// la fonction main exécute les fonctions asynchrones une par une</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">async function main(): Promise&lt;void&gt; {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  try {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // init-session</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    console.log(&quot;action init-session en cours ---------------------------------------------&quot;);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    const response1 = <span style="background-color:#fff5ce">await</span> initSession(axios);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    console.log(&quot;succès ---------------------------------------------&quot;);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    console.log(&quot;réponse=&quot;, response1);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // authentifier-utilisateur</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    console.log(&quot;action authentifier-utilisateur en cours ---------------------------------------------&quot;);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    const response2 = <span style="background-color:#fff5ce">await</span> authentifierUtilisateur(axios, &#x27;admin&#x27;, &#x27;admin&#x27;);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    console.log(&quot;succès ---------------------------------------------&quot;);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    console.log(&quot;réponse=&quot;, response2)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  } catch (error) {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    console.log(&quot;erreur ---------------------------------------------&quot;);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    console.log(&quot;erreur=&quot;, error);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// test</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">main();</span></span>
+</code></pre></div>
+
+<ul>
+<li>lignes 42-53 : la requête POST envoie ses paramètres (<span style="color: #9a3412">user</span>, <span style="color: #9a3412">password</span>) encodés en <span style="color: #9a3412">application/x-www-form-urlencoded</span>, via <span style="color: #9a3412">qs.stringify(...)</span> dans <span style="color: #9a3412">options.data</span> ;</li>
+<li>lignes 55-57 : l’URL [<mark style="background-color: #fff5ce">post /main.php?action=authentifier-utilisateur</mark>] a également un paramètre dans l’URL ;</li>
+<li>les deux fonctions sont exécutées <strong>séquentiellement</strong> dans <span style="color: #9a3412">main</span> (<span style="color: #9a3412">await</span> l&#x27;une après l&#x27;autre) (lignes 81, 86) : la seconde ne peut avoir de sens que si la première a réussi, puisqu&#x27;elle dépend du cookie de session établi par <span style="color: #9a3412">init-session</span>.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>npx tsx http/axios-03.ts
+</code></pre></div>
+<p><em>Résultat de l&#x27;exécution :</em></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-typescript">
+<span class="odt-code-line"><span class="odt-code-line-content">action init-session en cours -----------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">succès ---------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">réponse= {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  action: &#x27;init-session&#x27;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  &#x27;état&#x27;: 700,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  &#x27;réponse&#x27;: &#x27;session démarrée avec type [json]&#x27;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">action authentifier-utilisateur en cours ----------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">succès ---------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">réponse= {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  action: &#x27;authentifier-utilisateur&#x27;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  &#x27;état&#x27;: 103,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="background-color:#fff5ce">&#x27;réponse&#x27;: [ &#x27;pas de session en cours. Commencer par action [init-session]&#x27; ]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<ul>
+<li>lignes 10-14 : l’action [authentifier-utilisateur] a échoué. La raison en est la suivante :<ul>
+<li>l’action [init-session] n’a pas envoyé au serveur de cookie de session. C’est son identifiant auprès du serveur. Parce qu’il n’a pas envoyé cet identifiant, le client est inconnu du serveur. Dans sa réponse, celui-ci a inclus un cookie de session. Cela veut dire au client : “Voici ton identifiant pour tes prochaines requêtes” ;</li>
+<li>mais l’action [authentifier-utilisateur] n’a pas, elle non plus, envoyé au serveur le cookie de session. Ceci parce que [init-session] n’a pris le soin de le mémoriser. Le serveur ne reconnaît pas alors le client et ne sait pas qu’il a initié précédemment une session jSON et il le lui dit ;</li>
+</ul>
+</li>
+</ul>
+<p>La solution à ce problème est de gérer le cookie de session envoyé par le serveur :</p>
+<ul>
+<li>la toute première requête faite au serveur, doit mémoriser le cookie de session envoyé par le serveur ;</li>
+<li>les requêtes suivantes doivent récupérer ce cookie de session et l’envoyer au serveur pour s’identifier ;</li>
+</ul>
+<h2 id="57-script-axios-04-gestion-du-cookie-de-session">5.7. <span style="color: #2e74b5">script [axios-04] — gestion du cookie de session</span></h2>
+<p>Le code reprend le précédent mais ajoute une fonction [getRemoteData] pour gérer le cookie de session :</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-javascript">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#a31515">&#x27;use strict&#x27;;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#8f08c4">import</span> <span style="color:#1f377f">axios</span>, { <span style="color:#1f377f">AxiosInstance</span>, <span style="color:#1f377f">AxiosRequestConfig</span>, <span style="color:#1f377f">AxiosResponse</span> } <span style="color:#8f08c4">from</span> <span style="color:#a31515">&#x27;axios&#x27;</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#8f08c4">import</span> <span style="color:#1f377f">qs</span> <span style="color:#8f08c4">from</span> <span style="color:#a31515">&#x27;qs&#x27;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// configuration axios</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#1f377f">axios</span>.<span style="color:#1f377f">defaults</span>.<span style="color:#1f377f">timeout</span> = 2000;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#1f377f">axios</span>.<span style="color:#1f377f">defaults</span>.<span style="color:#1f377f">baseURL</span> = <span style="color:#a31515">&#x27;</span><span style="background-color:#fff5ce;color:#a31515">http://localhost:</span><span style="background-color:#fff5ce;color:#a31515">3000</span><span style="background-color:#fff5ce;color:#a31515">/</span><span style="color:#a31515">&#x27;</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// cookie de session</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">const</span> <span style="color:#1f377f">sessionCookieName</span>: <span style="color:#2b91af">string</span> = <span style="color:#a31515">&quot;</span><span style="background-color:#fff5ce;color:#a31515">connect.sid</span><span style="color:#a31515">&quot;</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">let</span> <span style="background-color:#fff5ce;color:#1f377f">sessionCookie</span>: <span style="color:#2b91af">string</span> = <span style="color:#a31515">&#x27;&#x27;</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// init session</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">async</span> <span style="color:#0000ff">function</span> <span style="color:#74531f">initSession</span>(<span style="color:#1f377f">axios</span>: <span style="color:#2b91af">AxiosInstance</span>): <span style="color:#2b91af">Promise</span>&lt;<span style="color:#2b91af">any</span>&gt; {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008000">// options de la requête HHTP [get /main.php?action=init-session&amp;type=json]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#0000ff">const</span> <span style="color:#1f377f">options</span>: <span style="color:#2b91af">AxiosRequestConfig</span> = {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// [mise à jour TypeScript] URL incluse dans [options.url]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#1f377f">url</span>: <span style="color:#a31515">&#x27;</span><span style="background-color:#fff5ce;color:#a31515">main.php</span><span style="color:#a31515">&#x27;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#1f377f">method</span>: <span style="color:#a31515">&quot;</span><span style="background-color:#fff5ce;color:#a31515">GET</span><span style="color:#a31515">&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// paramètres de l&#x27;URL</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#1f377f">params</span>: {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="background-color:#fff5ce;color:#1f377f">action</span>: <span style="color:#a31515">&#x27;init-session&#x27;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="background-color:#fff5ce;color:#1f377f">type</span>: <span style="color:#a31515">&#x27;json&#x27;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  };</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008000">// exécution de la requête HTTP</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#8f08c4">return</span> <span style="background-color:#fff5ce;color:#8f08c4">await</span> <span style="color:#74531f">getRemoteData</span>(<span style="color:#1f377f">axios</span>, <span style="color:#1f377f">options</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">async</span> <span style="color:#0000ff">function</span> <span style="color:#74531f">authentifierUtilisateur</span>(<span style="color:#1f377f">axios</span>: <span style="color:#2b91af">AxiosInstance</span>, <span style="color:#1f377f">user</span>: <span style="color:#2b91af">string</span>, <span style="color:#1f377f">password</span>: <span style="color:#2b91af">string</span>): <span style="color:#2b91af">Promise</span>&lt;<span style="color:#2b91af">any</span>&gt; {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008000">// options de la requête HHTP [post /main.php?action=authentifier-utilisateur]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#0000ff">const</span> <span style="color:#1f377f">options</span>: <span style="color:#2b91af">AxiosRequestConfig</span> = {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// [mise à jour TypeScript] URL incluse dans [options.url]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#1f377f">url</span>: <span style="color:#a31515">&#x27;</span><span style="background-color:#fff5ce;color:#a31515">main.php</span><span style="color:#a31515">&#x27;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#1f377f">method</span>: <span style="color:#a31515">&quot;</span><span style="background-color:#fff5ce;color:#a31515">POST</span><span style="color:#a31515">&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#1f377f">headers</span>: {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="color:#1f377f">&#x27;Content-type&#x27;: &#x27;application/x-www-form-urlencoded&#x27;,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    },</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// corps du POST</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#1f377f">data</span>: <span style="color:#1f377f">qs</span>.<span style="color:#74531f">stringify</span>({</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="background-color:#fff5ce;color:#1f377f">user</span>: <span style="color:#1f377f">user</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="background-color:#fff5ce;color:#1f377f">password</span>: <span style="color:#1f377f">password</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }),</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// paramètres de l&#x27;URL</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#1f377f">params</span>: {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="background-color:#fff5ce;color:#1f377f">action</span>: <span style="color:#a31515">&#x27;authentifier-utilisateur&#x27;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  };</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008000">// exécution de la requête HTTP</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#8f08c4">return</span> <span style="background-color:#fff5ce;color:#8f08c4">await</span> <span style="color:#74531f">getRemoteData</span>(<span style="color:#1f377f">axios</span>, <span style="color:#1f377f">options</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">async</span> <span style="color:#0000ff">function</span> <span style="background-color:#fff5ce;color:#74531f">getRemoteData</span>(<span style="color:#1f377f">axios</span>: <span style="background-color:#fff5ce;color:#2b91af">AxiosInstance</span>, <span style="color:#1f377f">options</span>: <span style="background-color:#fff5ce;color:#2b91af">AxiosRequestConfig</span>): <span style="color:#2b91af">Promise</span>&lt;<span style="color:#2b91af">any</span>&gt; {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008000">// pour le cookie de session</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#8f08c4">if</span> (!<span style="color:#1f377f">options</span>.<span style="color:#1f377f">headers</span>) {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#1f377f">options</span>.<span style="color:#1f377f">headers</span> = {} <span style="color:#8f08c4">as</span> <span style="color:#2b91af">any</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  (<span style="color:#1f377f">options</span>.<span style="color:#1f377f">headers</span> <span style="color:#8f08c4">as</span> <span style="color:#2b91af">any</span>).<span style="color:#1f377f">Cookie</span> = <span style="color:#1f377f">sessionCookie</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008000">// exécution de la requête HTTP</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#0000ff">let</span> <span style="color:#1f377f">response</span>: <span style="color:#2b91af">AxiosResponse</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#8f08c4">try</span> {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// requête asynchrone</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#1f377f">response</span> = <span style="background-color:#fff5ce;color:#8f08c4">await</span> <span style="color:#1f377f">axios</span>.<span style="color:#74531f">request</span>(<span style="color:#1f377f">options</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  } <span style="color:#8f08c4">catch</span> (<span style="color:#1f377f">error</span>: <span style="color:#2b91af">any</span>) {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// le paramètre [error] est une instance d&#x27;exception - elle peut avoir diverses formes</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#8f08c4">if</span> (<span style="color:#1f377f">error</span>.<span style="color:#1f377f">response</span>) {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="color:#008000">// la réponse du serveur est dans [error.response]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="color:#1f377f">response</span> = <span style="color:#1f377f">error</span>.<span style="color:#1f377f">response</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    } <span style="color:#8f08c4">else</span> {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="color:#008000">// on relance l&#x27;erreur</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="color:#8f08c4">throw</span> <span style="color:#1f377f">error</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008000">// response est l&#x27;ensemble de la réponse HTTP du serveur (entêtes HTTP + réponse elle-même)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008000">// on récupère le cookie de session s&#x27;il existe</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#0000ff">const</span> <span style="color:#1f377f">setCookie</span> = <span style="color:#1f377f">response</span>.<span style="color:#1f377f">headers</span>[<span style="color:#a31515">&#x27;set-cookie&#x27;</span>];</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#8f08c4">if</span> (<span style="color:#1f377f">setCookie</span>) {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// setCookie est un tableau</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// on cherche le cookie de session dans ce tableau</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">let</span> <span style="color:#1f377f">trouvé</span> = <span style="color:#0000ff">false</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">let</span> <span style="color:#1f377f">i</span> = 0;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#8f08c4">while</span> (!<span style="color:#1f377f">trouvé</span> &amp;&amp; <span style="color:#1f377f">i</span> &lt; <span style="color:#1f377f">setCookie</span>.<span style="color:#1f377f">length</span>) {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="color:#008000">// on cherche le cookie de session</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="color:#0000ff">const</span> <span style="color:#1f377f">results</span> = <span style="color:#2b91af">RegExp</span>(<span style="color:#a31515">&#x27;^(&#x27;</span> + <span style="background-color:#fff5ce;color:#1f377f">sessionCookieName</span> + <span style="color:#a31515">&#x27;.+?);&#x27;</span>).<span style="color:#74531f">exec</span>(<span style="color:#1f377f">setCookie</span>[<span style="color:#1f377f">i</span>]);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="color:#8f08c4">if</span> (<span style="color:#1f377f">results</span>) {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000">// on mémorise le cookie de session</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000">// eslint-disable-next-line require-atomic-updates</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#1f377f">sessionCookie</span> = <span style="color:#1f377f">results</span>[1];</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000">// on a trouvé</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#1f377f">trouvé</span> = <span style="color:#0000ff">true</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      } <span style="color:#8f08c4">else</span> {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000">// élément suivant</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#1f377f">i</span>++;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008000">// la réponse du serveur est dans [response.data]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#8f08c4">return</span> <span style="color:#1f377f">response</span>.<span style="color:#1f377f">data</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// la fonction main exécute les fonctions asynchrones une par une</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">async</span> <span style="color:#0000ff">function</span> <span style="color:#74531f">main</span>(): <span style="color:#2b91af">Promise</span>&lt;<span style="color:#2b91af">void</span>&gt; {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#8f08c4">try</span> {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// init-session</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#2b91af">console</span>.<span style="color:#74531f">log</span>(<span style="color:#a31515">&quot;action init-session en cours ----------------&quot;</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">const</span> <span style="color:#1f377f">response1</span> = <span style="color:#8f08c4">await</span> <span style="color:#74531f">initSession</span>(<span style="color:#1f377f">axios</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#2b91af">console</span>.<span style="color:#74531f">log</span>(<span style="color:#a31515">&quot;succès --------------------------&quot;</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#2b91af">console</span>.<span style="color:#74531f">log</span>(<span style="color:#a31515">&quot;réponse=&quot;</span>, <span style="color:#1f377f">response1</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">// authentifier-utilisateur</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#2b91af">console</span>.<span style="color:#74531f">log</span>(<span style="color:#a31515">&quot;action authentifier-utilisateur en cours ---------&quot;</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">const</span> <span style="color:#1f377f">response2</span> = <span style="color:#8f08c4">await</span> <span style="color:#74531f">authentifierUtilisateur</span>(<span style="color:#1f377f">axios</span>, <span style="color:#a31515">&#x27;admin&#x27;</span>, <span style="color:#a31515">&#x27;admin&#x27;</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#2b91af">console</span>.<span style="color:#74531f">log</span>(<span style="color:#a31515">&quot;succès -------------------&quot;</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#2b91af">console</span>.<span style="color:#74531f">log</span>(<span style="color:#a31515">&quot;réponse=&quot;</span>, <span style="color:#1f377f">response2</span>)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  } <span style="color:#8f08c4">catch</span> (<span style="color:#1f377f">error</span>: <span style="color:#2b91af">any</span>) {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#2b91af">console</span>.<span style="color:#74531f">log</span>(<span style="color:#a31515">&quot;erreur ------------------&quot;</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#2b91af">console</span>.<span style="color:#74531f">log</span>(<span style="color:#a31515">&quot;erreur=&quot;</span>, <span style="color:#1f377f">error</span>.<span style="color:#1f377f">message</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// test</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#74531f">main</span>();</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+</code></pre></div>
+
+<p>Ce script factorise <span style="color: #9a3412">initSession</span> et <span style="color: #9a3412">authentifierUtilisateur</span> autour d&#x27;une fonction commune <strong><span style="color: #9a3412">[getRemoteData]</span></strong>, qui gère explicitement le <strong>cookie de session</strong> PHP (<span style="color: #9a3412">PHPSESSID</span>) — indispensable puisque le serveur associe l&#x27;authentification et les simulations à une session HTTP :</p>
+<ul>
+<li>ligne 10 : le nom du cookie de session recherché. Il dépend du serveur Web utilisé. Le serveur NestJS utilisé dans ce cours utilise un cookie de session qui a pour nom [connect.sid] ;</li>
+<li>ligne 53 : la fonction [getRemoteData] gère l’envoi des requêtes et la réception de la réponse du serveur. De plus, elle gère le cookie de session. Elle reçoit deux paramètres :<ul>
+<li>l’objet [<span style="color: #2b91af"><mark style="background-color: #fff5ce">AxiosInstance</mark></span>] qui gère la mécanique générale des requêtes HTTP Axios. Cet objet et d’autres sont obtenus par l’import de la ligne 2 ;</li>
+<li>l’objet [<span style="color: #2b91af"><mark style="background-color: #fff5ce">AxiosRequestConfig</mark></span>] qui définit les options d’une requête en particulier ;</li>
+</ul>
+</li>
+<li>lignes 54-58 : [options.headers] fixe l’entête de la requête HTTP qui va être envoyée au serveur. Si un cookie de session existe, on doit le mettre dans cet entête. C’est la ligne 58 qui fait cela. A l’issue de la première requête <strong><span style="color: #9a3412">[getRemoteData]</span></strong> va mémoriser ce cookie dans la variable globale définie ligne 11. Lors de la première requête, sa valeur sera la chaîne vide. Pour les requêtes suivantes, ce sera la chaîne de caractères du cookie de session envoyé par le serveur en réponse à la première requête.</li>
+<li>ligne 63 : la requête HTTP est exécutée ;</li>
+<li>ligne 76 : on regarde dans l’entête de la réponse, s’il y a une ligne ‘set-cookie’. Cette ligne n’est présente que si la requête précédente du client n’a pas envoyé la ligne ‘Cookie’ dans ses entêtes. Lorsque le serveur reçoit du client une requête HTTP avec la ligne ‘Cookie’, il ne renvoie plus le cookie de session car il sait que le client l’a. C’est au client de le renvoyer à chaque nouvelle requête. C’est ce qui est fait ligne 58 ;</li>
+<li>ligne 77 : si le serveur a envoyé l’entête [Set-Cookie] alors il faut récupérer ce contenu. Cet entête peut englober plusieurs cookies sous la forme [nom_cookie=valeur]. Les lignes 77-95 ne seront exécutées qu’une fois au cours de l’exécution de script. On l’a dit, le serveur n’envoie pas le cookie de session en réponse aux requêtes qui se sont authentifiées avec ce même cookie de session ;</li>
+<li>ligne 84 : on cherche explicitement le cookie dont le nom a été mémorisé ligne 10 ;</li>
+<li>ligne 88 : si on le trouve, on le mémorise dans la variable globale de la ligne 11 ;</li>
+</ul>
+<p>Ce mécanisme fait que :</p>
+<ul>
+<li>le cookie de session est récupéré dans la réponse à la première requête HTTP ;</li>
+<li>il est envoyé ensuite systématiquement au serveur à chaque nouvelle requête, ce qui permet au serveur de reconnaître son client ;</li>
+</ul>
+<p>On exécute le code :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>npx tsx http/axios-04.ts
+</code></pre></div>
+<p><em>Résultat de l&#x27;exécution :</em></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-typescript">
+<span class="odt-code-line"><span class="odt-code-line-content">action init-session en cours -----------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">succès ---------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">réponse= {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  action: &#x27;init-session&#x27;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  &#x27;état&#x27;: 700,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  &#x27;réponse&#x27;: &#x27;session démarrée avec type [json]&#x27;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">action authentifier-utilisateur en cours ----------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">succès ---------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">réponse= {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  action: &#x27;authentifier-utilisateur&#x27;,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  &#x27;état&#x27;: 200,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="background-color:#fff5ce">&#x27;réponse&#x27;: &#x27;Authentification réussie [admin, admin]&#x27;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<h2 id="58-script-fetch-03-annulation-de-requetes">5.8. <span style="color: #2e74b5">script [fetch-03] — annulation de requêtes</span></h2>
+<p><strong><span style="color: #9a3412">[NOUVEAU depuis 2019]</span></strong> Ce script illustre deux usages du mécanisme d&#x27;<strong>annulation</strong> des requêtes <span style="color: #9a3412">fetch</span>, disponible nativement depuis Node 18 :</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-javascript">
+<span class="odt-code-line"><span class="odt-code-line-content">&#x27;use strict&#x27;;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// ========================================================================</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// [NOUVEAU depuis 2019] fetch natif + annulation d&#x27;une requête HTTP</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// ========================================================================</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// [fetch] est global depuis Node 18 : plus besoin du package [node-fetch]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// utilisé en 2019 dans fetch-01.js/fetch-02.js (voir les commentaires [mise à jour 2026]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// ajoutés dans ces deux fichiers)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// URL de base du serveur de calcul d&#x27;impôt (voir http/README.md)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// comme pour axios-01.js, ce script suppose que le serveur PHP du cours tourne</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// en local : sans lui, les requêtes échouent avec &quot;fetch failed&quot;, ce qui est normal</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">const baseUrl: string = &#x27;<span style="background-color:#fff5ce">http://localhost:</span><span style="background-color:#fff5ce">3000</span><span style="background-color:#fff5ce">/main.php</span>&#x27;;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// exemple 1 : requête avec délai maximum grâce à AbortSignal.timeout()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">async function requêteAvecDélaiMaximum(): Promise&lt;void&gt; {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  console.log(&quot;--- requête avec AbortSignal.timeout ---&quot;);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  try {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    const response = await fetch(baseUrl + &#x27;?action=init-session&amp;type=json&#x27;, {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      // au-delà de 2 secondes, la requête est annulée automatiquement</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="background-color:#fff5ce">signal</span>: AbortSignal.timeout(2000)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    });</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    const données = <span style="background-color:#fff5ce">await</span> response.json();</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    console.log(&quot;réponse =&quot;, données);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  } catch (erreur: any) {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // si le délai est dépassé,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    // [erreur.name] vaut &quot;TimeoutError&quot; ou &quot;AbortError&quot; selon le cas</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    console.log(&quot;erreur.name =&quot;, erreur.name, &quot;, message =&quot;, erreur.message);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// exemple 2 : annulation manuelle d&#x27;une requête, par exemple parce que</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// l&#x27;utilisateur a changé d&#x27;avis (ex : il retape dans un champ de recherche)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">async function requêteAnnulableManuellement(): Promise&lt;void&gt; {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  console.log(&quot;--- requête annulée manuellement ---&quot;);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  const contrôleur = new <span style="background-color:#fff5ce">AbortController</span>();</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  // on programme une annulation &quot;métier&quot; au bout de 500 ms</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  // (dans une vraie application, ce serait par exemple un clic sur un bouton &quot;annuler&quot;)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  setTimeout(() =&gt; {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    console.log(&quot;annulation manuelle déclenchée&quot;);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    contrôleur.abort();</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }, <span style="background-color:#fff5ce">1</span><span style="background-color:#fff5ce">0</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  try {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    const response = <span style="background-color:#fff5ce">await</span> fetch(baseUrl + &#x27;?action=init-session&amp;type=json&#x27;, {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="background-color:#fff5ce">signal</span>: contrôleur.signal</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    });</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    const données = await response.json();</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    console.log(&quot;réponse =&quot;, données);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  } catch (erreur: any) {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    console.log(&quot;erreur.name =&quot;, erreur.name, &quot;, message =&quot;, erreur.message);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">async function main(): Promise&lt;void&gt; {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  await requêteAvecDélaiMaximum();</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  await requêteAnnulableManuellement();</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">main();</span></span>
+</code></pre></div>
+
+<ul>
+<li><strong><span style="color: #9a3412">[AbortSignal.timeout(ms)]</span></strong> : annule automatiquement la requête si elle dépasse le délai donné — pattern déjà vu au script <span style="color: #9a3412">fetch-01</span> ;</li>
+<li><strong><span style="color: #9a3412">[AbortController]</span></strong> : permet une annulation <strong>manuelle</strong>, déclenchée par n&#x27;importe quel événement applicatif (ici un <span style="color: #9a3412">setTimeout</span> simulant, par exemple, un clic sur un bouton « Annuler », ou une nouvelle frappe dans un champ de recherche qui invalide la requête précédente).</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>npx tsx http/fetch-03.ts
+</code></pre></div>
+<p><em>Résultat de l&#x27;exécution :</em></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span>
+<span class="normal"><a href="#__codelineno-8-6">6</a></span>
+<span class="normal"><a href="#__codelineno-8-7">7</a></span>
+<span class="normal"><a href="#__codelineno-8-8">8</a></span>
+<span class="normal"><a href="#__codelineno-8-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="o">---</span><span class="w"> </span><span class="nx">requête</span><span class="w"> </span><span class="nx">avec</span><span class="w"> </span><span class="nx">AbortSignal</span><span class="p">.</span><span class="nx">timeout</span><span class="w"> </span><span class="o">---</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="nx">réponse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">  </span><span class="nx">action</span><span class="o">:</span><span class="w"> </span><span class="s1">'init-session'</span><span class="p">,</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="w">  </span><span class="s1">'état'</span><span class="o">:</span><span class="w"> </span><span class="mf">700</span><span class="p">,</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">  </span><span class="s1">'réponse'</span><span class="o">:</span><span class="w"> </span><span class="s1">'session démarrée avec type [json]'</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="p">}</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="o">---</span><span class="w"> </span><span class="nx">requête</span><span class="w"> </span><span class="nx">annulée</span><span class="w"> </span><span class="nx">manuellement</span><span class="w"> </span><span class="o">---</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="nx">annulation</span><span class="w"> </span><span class="nx">manuelle</span><span class="w"> </span><span class="nx">déclenchée</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="nx">erreur</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">AbortError</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nx">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">This</span><span class="w"> </span><span class="nx">operation</span><span class="w"> </span><span class="nx">was</span><span class="w"> </span><span class="nx">aborted</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>lignes 2-6 : la première requête s’est terminée normalement ;</li>
+<li>lignes 8-9 : la seconde requête a été annulée à cause du délai très court (10 ms) donné à la requête (ligne 43 du code) ;</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        Ce cours-tutoriel rédigé par l'IA <strong>Claude</strong> d'Anthropic et révisé par <strong>Serge Tahé</strong> est mis à la disposition du public selon les termes de la
+        <em>Licence Creative Commons Attribution – Pas d'utilisation commerciale –
+        Partage dans les mêmes conditions 3.0 non modifiée</em>.
+
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>
