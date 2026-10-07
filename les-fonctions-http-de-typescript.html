@@ -734,7 +734,7 @@
 <p>En [A-B], un code Javascript exécuté par [node.js] va faire des requêtes [1] à l’application web [C]. Celle-ci lui enverra des réponses jSON (4). Le code Javascript du client peut être organisé en couches <strong>[UI, métier, dao]</strong> (UI : User Interface). C’est ce que nous ferons ultérieurement. Pour exécuter les scripts qui suivent, votre serveur NestJS doit être lancé.</p>
 <h2 id="53-script-fetch-01">5.3. <span style="color: #2e74b5">script [fetch-01]</span></h2>
 <p>Ce script utilise <strong><span style="color: #9a3412">[fetch]</span></strong> pour initialiser une session JSON avec le serveur de calcul d&#x27;impôt :</p>
-<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-javascript">
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-typescript">
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#a31515">&#x27;use strict&#x27;;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">// [mise à jour 2026] en 2019, il fallait installer le package [node-fetch] pour disposer</span></span>
@@ -846,7 +846,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>npx tsx http/fetch-01.ts
 </code></pre></div>
 <p><em>Résultat de l&#x27;exécution :</em></p>
-<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-typescript">
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
 <span class="odt-code-line"><span class="odt-code-line-content">requête HTTP vers le serveur en cours ---------------------------------------------</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">réponse fetch formatée en json,={}, heure=12:36:31:319, durée= 0 seconde(s) et 93 millisecondes</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">réponse fetch en javascript= Response {</span></span>
@@ -897,7 +897,7 @@
 </ul>
 <h2 id="54-script-fetch-02">5.4. <span style="color: #2e74b5">script [fetch-02]</span></h2>
 <p>Ce script reprend <span style="color: #9a3412">fetch-01</span> en le débarrassant de tous les détails de démonstration inutiles à l&#x27;usage courant :</p>
-<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-javascript">
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-typescript">
 <span class="odt-code-line"><span class="odt-code-line-content">&#x27;use strict&#x27;;</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">// [mise à jour 2026] [fetch] est désormais une fonction globale native de node</span></span>
@@ -950,17 +950,17 @@
 <span class="normal"><a href="#__codelineno-2-4">4</a></span>
 <span class="normal"><a href="#__codelineno-2-5">5</a></span>
 <span class="normal"><a href="#__codelineno-2-6">6</a></span>
-<span class="normal"><a href="#__codelineno-2-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nx">requête</span><span class="w"> </span><span class="nx">HTTP</span><span class="w"> </span><span class="nx">vers</span><span class="w"> </span><span class="nx">le</span><span class="w"> </span><span class="nx">serveur</span><span class="w"> </span><span class="nx">en</span><span class="w"> </span><span class="nx">cours</span><span class="w"> </span><span class="o">---------------------------------------------</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="nx">succès</span><span class="w"> </span><span class="o">---------------------------------------------</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="nx">réponse</span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">  </span><span class="nx">action</span><span class="o">:</span><span class="w"> </span><span class="s1">'init-session'</span><span class="p">,</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">  </span><span class="s1">'état'</span><span class="o">:</span><span class="w"> </span><span class="mf">700</span><span class="p">,</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">  </span><span class="s1">'réponse'</span><span class="o">:</span><span class="w"> </span><span class="s1">'session démarrée avec type [json]'</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="p">}</span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>requête HTTP vers le serveur en cours ---------------------------------------------
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>succès ---------------------------------------------
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>réponse= {
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>  action: 'init-session',
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>  'état': 700,
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a>  'réponse': 'session démarrée avec type [json]'
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a>}
 </code></pre></div></td></tr></table></div>
 <h2 id="55-script-axios-01">5.5. <span style="color: #2e74b5">script [axios-01]</span></h2>
 <p>Même exemple, avec <strong><span style="color: #9a3412">[axios]</span></strong> :</p>
-<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-typescript">
 <span class="odt-code-line"><span class="odt-code-line-content">&#x27;use strict&#x27;;</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">import axios, { AxiosInstance, AxiosRequestConfig } from &#x27;axios&#x27;;</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"></span></span>
@@ -1042,17 +1042,17 @@
 <span class="normal"><a href="#__codelineno-4-4">4</a></span>
 <span class="normal"><a href="#__codelineno-4-5">5</a></span>
 <span class="normal"><a href="#__codelineno-4-6">6</a></span>
-<span class="normal"><a href="#__codelineno-4-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nx">requête</span><span class="w"> </span><span class="nx">HTTP</span><span class="w"> </span><span class="nx">vers</span><span class="w"> </span><span class="nx">le</span><span class="w"> </span><span class="nx">serveur</span><span class="w"> </span><span class="nx">en</span><span class="w"> </span><span class="nx">cours</span><span class="w"> </span><span class="o">---------------------------------------------</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="nx">succès</span><span class="w"> </span><span class="o">---------------------------------------------</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="nx">réponse</span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">  </span><span class="nx">action</span><span class="o">:</span><span class="w"> </span><span class="s1">'init-session'</span><span class="p">,</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">  </span><span class="s1">'état'</span><span class="o">:</span><span class="w"> </span><span class="mf">700</span><span class="p">,</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">  </span><span class="s1">'réponse'</span><span class="o">:</span><span class="w"> </span><span class="s1">'session démarrée avec type [json]'</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="p">}</span><span class="w"> </span><span class="nx">object</span>
+<span class="normal"><a href="#__codelineno-4-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>requête HTTP vers le serveur en cours ---------------------------------------------
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a>succès ---------------------------------------------
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a>réponse= {
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>  action: 'init-session',
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a>  'état': 700,
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a>  'réponse': 'session démarrée avec type [json]'
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a>} object
 </code></pre></div></td></tr></table></div>
 <h2 id="56-script-axios-03-authentification">5.6. <span style="color: #2e74b5">script [axios-03] — authentification</span></h2>
 <p>Ce script enchaîne deux requêtes : <span style="color: #9a3412">init-session</span>, puis <span style="color: #9a3412">authentifier-utilisateur</span> en <strong><span style="color: #9a3412">[POST]</span></strong>, avec un corps encodé par la bibliothèque <strong><span style="color: #9a3412">[qs]</span></strong> :</p>
-<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-typescript">
 <span class="odt-code-line"><span class="odt-code-line-content">&#x27;use strict&#x27;;</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">import axios, { AxiosInstance, AxiosRequestConfig } from &#x27;axios&#x27;;</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">import qs from &#x27;qs&#x27;</span></span>
@@ -1159,7 +1159,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>npx tsx http/axios-03.ts
 </code></pre></div>
 <p><em>Résultat de l&#x27;exécution :</em></p>
-<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-typescript">
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
 <span class="odt-code-line"><span class="odt-code-line-content">action init-session en cours -----------------------</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">succès ---------------------------------------------</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">réponse= {</span></span>
@@ -1190,7 +1190,7 @@
 </ul>
 <h2 id="57-script-axios-04-gestion-du-cookie-de-session">5.7. <span style="color: #2e74b5">script [axios-04] — gestion du cookie de session</span></h2>
 <p>Le code reprend le précédent mais ajoute une fonction [getRemoteData] pour gérer le cookie de session :</p>
-<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-javascript">
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-typescript">
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#a31515">&#x27;use strict&#x27;;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#8f08c4">import</span> <span style="color:#1f377f">axios</span>, { <span style="color:#1f377f">AxiosInstance</span>, <span style="color:#1f377f">AxiosRequestConfig</span>, <span style="color:#1f377f">AxiosResponse</span> } <span style="color:#8f08c4">from</span> <span style="color:#a31515">&#x27;axios&#x27;</span>;</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#8f08c4">import</span> <span style="color:#1f377f">qs</span> <span style="color:#8f08c4">from</span> <span style="color:#a31515">&#x27;qs&#x27;</span></span></span>
@@ -1340,7 +1340,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>npx tsx http/axios-04.ts
 </code></pre></div>
 <p><em>Résultat de l&#x27;exécution :</em></p>
-<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-typescript">
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
 <span class="odt-code-line"><span class="odt-code-line-content">action init-session en cours -----------------------</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">succès ---------------------------------------------</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">réponse= {</span></span>
@@ -1359,7 +1359,7 @@
 
 <h2 id="58-script-fetch-03-annulation-de-requetes">5.8. <span style="color: #2e74b5">script [fetch-03] — annulation de requêtes</span></h2>
 <p><strong><span style="color: #9a3412">[NOUVEAU depuis 2019]</span></strong> Ce script illustre deux usages du mécanisme d&#x27;<strong>annulation</strong> des requêtes <span style="color: #9a3412">fetch</span>, disponible nativement depuis Node 18 :</p>
-<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-javascript">
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-typescript">
 <span class="odt-code-line"><span class="odt-code-line-content">&#x27;use strict&#x27;;</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">// ========================================================================</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">// [NOUVEAU depuis 2019] fetch natif + annulation d&#x27;une requête HTTP</span></span>
@@ -1438,15 +1438,15 @@
 <span class="normal"><a href="#__codelineno-8-6">6</a></span>
 <span class="normal"><a href="#__codelineno-8-7">7</a></span>
 <span class="normal"><a href="#__codelineno-8-8">8</a></span>
-<span class="normal"><a href="#__codelineno-8-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="o">---</span><span class="w"> </span><span class="nx">requête</span><span class="w"> </span><span class="nx">avec</span><span class="w"> </span><span class="nx">AbortSignal</span><span class="p">.</span><span class="nx">timeout</span><span class="w"> </span><span class="o">---</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="nx">réponse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">  </span><span class="nx">action</span><span class="o">:</span><span class="w"> </span><span class="s1">'init-session'</span><span class="p">,</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="w">  </span><span class="s1">'état'</span><span class="o">:</span><span class="w"> </span><span class="mf">700</span><span class="p">,</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">  </span><span class="s1">'réponse'</span><span class="o">:</span><span class="w"> </span><span class="s1">'session démarrée avec type [json]'</span>
-<a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="p">}</span>
-<a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="o">---</span><span class="w"> </span><span class="nx">requête</span><span class="w"> </span><span class="nx">annulée</span><span class="w"> </span><span class="nx">manuellement</span><span class="w"> </span><span class="o">---</span>
-<a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="nx">annulation</span><span class="w"> </span><span class="nx">manuelle</span><span class="w"> </span><span class="nx">déclenchée</span>
-<a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="nx">erreur</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">AbortError</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nx">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">This</span><span class="w"> </span><span class="nx">operation</span><span class="w"> </span><span class="nx">was</span><span class="w"> </span><span class="nx">aborted</span>
+<span class="normal"><a href="#__codelineno-8-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>--- requête avec AbortSignal.timeout ---
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a>réponse = {
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a>  action: 'init-session',
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a>  'état': 700,
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a>  'réponse': 'session démarrée avec type [json]'
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a>}
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a>--- requête annulée manuellement ---
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a>annulation manuelle déclenchée
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a>erreur.name = AbortError , message = This operation was aborted
 </code></pre></div></td></tr></table></div>
 <ul>
 <li>lignes 2-6 : la première requête s’est terminée normalement ;</li>

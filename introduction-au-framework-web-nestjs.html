@@ -1494,14 +1494,14 @@
 <span class="normal"><a href="#__codelineno-1-5">5</a></span>
 <span class="normal"><a href="#__codelineno-1-6">6</a></span>
 <span class="normal"><a href="#__codelineno-1-7">7</a></span>
-<span class="normal"><a href="#__codelineno-1-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="n">hello</span><span class="o">-</span><span class="n">nest</span><span class="o">/</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="n">src</span><span class="o">/</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="n">app</span><span class="p">.</span><span class="na">controller</span><span class="p">.</span><span class="na">ts</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="n">app</span><span class="p">.</span><span class="na">module</span><span class="p">.</span><span class="na">ts</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="n">app</span><span class="p">.</span><span class="na">service</span><span class="p">.</span><span class="na">ts</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="n">main</span><span class="p">.</span><span class="na">ts</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="n">package</span><span class="p">.</span><span class="na">json</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="n">tsconfig</span><span class="p">.</span><span class="na">json</span>
+<span class="normal"><a href="#__codelineno-1-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>hello-nest/
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>src/
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>app.controller.ts
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>app.module.ts
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>app.service.ts
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>main.ts
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a>package.json
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a>tsconfig.json
 </code></pre></div></td></tr></table></div>
 <h4 id="8413-larchitecture-dune-application-nestjs">8.4.1.3. <span style="color: #1f4d78">L&#x27;architecture d&#x27;une application NestJS</span></h4>
 <p>Ces quatre fichiers illustrent, à eux seuls, l&#x27;architecture MVC de NestJS : un point d&#x27;entrée (<span style="color: #9a3412">main.ts</span>), un module racine (<span style="color: #9a3412">app.module.ts</span>), un contrôleur (<span style="color: #9a3412">app.controller.ts</span>) et un service (<span style="color: #9a3412">app.service.ts</span>).</p>
@@ -1515,14 +1515,14 @@
 <span class="normal"><a href="#__codelineno-2-6">6</a></span>
 <span class="normal"><a href="#__codelineno-2-7">7</a></span>
 <span class="normal"><a href="#__codelineno-2-8">8</a></span>
-<span class="normal"><a href="#__codelineno-2-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="o">//</span> <span class="n">src</span><span class="o">/</span><span class="n">app</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">ts</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">Injectable</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">'@nestjs/common'</span><span class="p">;</span>
+<span class="normal"><a href="#__codelineno-2-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1">// src/app.service.ts</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Injectable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@nestjs/common'</span><span class="p">;</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3"></a>
-<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="nd">@Injectable</span><span class="p">()</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="n">export</span> <span class="k">class</span><span class="w"> </span><span class="nc">AppService</span> <span class="p">{</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6"></a>  <span class="n">getBonjour</span><span class="p">():</span> <span class="n">string</span> <span class="p">{</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7"></a>    <span class="k">return</span> <span class="s1">'Bonjour, tout le monde !'</span><span class="p">;</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8"></a>  <span class="p">}</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="kd">@Injectable</span><span class="p">()</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">AppService</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">  </span><span class="nx">getBonjour</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s1">'Bonjour, tout le monde !'</span><span class="p">;</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>Commentons ce code :</p>
@@ -1583,16 +1583,16 @@
 <span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
 <span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
 <span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-4-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="o">//</span> <span class="n">src</span><span class="o">/</span><span class="n">app</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">ts</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">Module</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">'@nestjs/common'</span><span class="p">;</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">AppController</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">'./app.controller'</span><span class="p">;</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">AppService</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">'./app.service'</span><span class="p">;</span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="c1">// src/app.module.ts</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Module</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@nestjs/common'</span><span class="p">;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">AppController</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'./app.controller'</span><span class="p">;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">AppService</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'./app.service'</span><span class="p">;</span>
 <a id="__codelineno-4-5" name="__codelineno-4-5"></a>
-<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="nd">@Module</span><span class="p">({</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7"></a>  <span class="n">controllers</span><span class="p">:</span> <span class="p">[</span><span class="n">AppController</span><span class="p">],</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8"></a>  <span class="n">providers</span><span class="p">:</span> <span class="p">[</span><span class="n">AppService</span><span class="p">],</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="kd">@Module</span><span class="p">({</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">  </span><span class="nx">controllers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">AppController</span><span class="p">],</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="w">  </span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">AppService</span><span class="p">],</span>
 <a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="p">})</span>
-<a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="n">export</span> <span class="k">class</span><span class="w"> </span><span class="nc">AppModule</span> <span class="p">{}</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">AppModule</span><span class="w"> </span><span class="p">{}</span>
 </code></pre></div></td></tr></table></div>
 <p>Commentons ce code :</p>
 <ul>
@@ -1690,14 +1690,14 @@
 <span class="normal"><a href="#__codelineno-6-5">5</a></span>
 <span class="normal"><a href="#__codelineno-6-6">6</a></span>
 <span class="normal"><a href="#__codelineno-6-7">7</a></span>
-<span class="normal"><a href="#__codelineno-6-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="o">//</span> <span class="n">src</span><span class="o">/</span><span class="n">app</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">ts</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">Module</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">'@nestjs/common'</span><span class="p">;</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">AppController</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">'./app.controller'</span><span class="p">;</span>
+<span class="normal"><a href="#__codelineno-6-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="c1">// src/app.module.ts</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Module</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@nestjs/common'</span><span class="p">;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">AppController</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'./app.controller'</span><span class="p">;</span>
 <a id="__codelineno-6-4" name="__codelineno-6-4"></a>
-<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="nd">@Module</span><span class="p">({</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6"></a>  <span class="n">controllers</span><span class="p">:</span> <span class="p">[</span><span class="n">AppController</span><span class="p">],</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="kd">@Module</span><span class="p">({</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="w">  </span><span class="nx">controllers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">AppController</span><span class="p">],</span>
 <a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="p">})</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="n">export</span> <span class="k">class</span><span class="w"> </span><span class="nc">AppModule</span> <span class="p">{}</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">AppModule</span><span class="w"> </span><span class="p">{}</span>
 </code></pre></div></td></tr></table></div>
 <p>Commentons ce code :</p>
 <ul>
@@ -1713,15 +1713,15 @@
 <span class="normal"><a href="#__codelineno-7-6">6</a></span>
 <span class="normal"><a href="#__codelineno-7-7">7</a></span>
 <span class="normal"><a href="#__codelineno-7-8">8</a></span>
-<span class="normal"><a href="#__codelineno-7-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="o">//</span> <span class="n">src</span><span class="o">/</span><span class="n">main</span><span class="o">.</span><span class="n">ts</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">NestFactory</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">'@nestjs/core'</span><span class="p">;</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">AppModule</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">'./app.module'</span><span class="p">;</span>
+<span class="normal"><a href="#__codelineno-7-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="c1">// src/main.ts</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">NestFactory</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@nestjs/core'</span><span class="p">;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">AppModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'./app.module'</span><span class="p">;</span>
 <a id="__codelineno-7-4" name="__codelineno-7-4"></a>
-<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="k">async</span> <span class="n">function</span> <span class="n">bootstrap</span><span class="p">()</span> <span class="p">{</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6"></a>  <span class="n">const</span> <span class="n">app</span> <span class="o">=</span> <span class="k">await</span> <span class="n">NestFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">AppModule</span><span class="p">);</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7"></a>  <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">bootstrap</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">NestFactory</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">AppModule</span><span class="p">);</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mf">3000</span><span class="p">);</span>
 <a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="p">}</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="n">bootstrap</span><span class="p">();</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="nx">bootstrap</span><span class="p">();</span>
 </code></pre></div></td></tr></table></div>
 <p>Le point d’entrée ne change pas d’un projet à l’autre : on retrouve exactement le même squelette <span style="color: #9a3412">bootstrap()</span> que dans le projet <span style="color: #9a3412">hello-nest</span> du chapitre précédent, qui crée l’application à partir du module racine puis écoute sur le port 3000.</p>
 <h4 id="8514-a01-renvoyer-du-texte">8.5.1.4. <span style="color: #1f4d78">[/a01] : renvoyer du texte</span></h4>
@@ -1763,12 +1763,12 @@
 <span class="normal"><a href="#__codelineno-10-4">4</a></span>
 <span class="normal"><a href="#__codelineno-10-5">5</a></span>
 <span class="normal"><a href="#__codelineno-10-6">6</a></span>
-<span class="normal"><a href="#__codelineno-10-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">Get</span><span class="p">,</span> <span class="n">HttpCode</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">'@nestjs/common'</span><span class="p">;</span>
+<span class="normal"><a href="#__codelineno-10-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Get</span><span class="p">,</span><span class="w"> </span><span class="nx">HttpCode</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@nestjs/common'</span><span class="p">;</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2"></a>
-<a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="nd">@Get</span><span class="p">(</span><span class="s1">'a03'</span><span class="p">)</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="nd">@HttpCode</span><span class="p">(</span><span class="mi">201</span><span class="p">)</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="n">a03</span><span class="p">():</span> <span class="nb">object</span> <span class="p">{</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6"></a>  <span class="k">return</span> <span class="p">{</span> <span class="n">réponse</span><span class="p">:</span> <span class="s1">'créé'</span> <span class="p">};</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="kd">@Get</span><span class="p">(</span><span class="s1">'a03'</span><span class="p">)</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="kd">@HttpCode</span><span class="p">(</span><span class="mf">201</span><span class="p">)</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="nx">a03</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">object</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">réponse</span><span class="o">:</span><span class="w"> </span><span class="s1">'créé'</span><span class="w"> </span><span class="p">};</span>
 <a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>Commentons ce code :</p>
@@ -1784,12 +1784,12 @@
 <span class="normal"><a href="#__codelineno-11-4">4</a></span>
 <span class="normal"><a href="#__codelineno-11-5">5</a></span>
 <span class="normal"><a href="#__codelineno-11-6">6</a></span>
-<span class="normal"><a href="#__codelineno-11-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">Get</span><span class="p">,</span> <span class="n">Header</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">'@nestjs/common'</span><span class="p">;</span>
+<span class="normal"><a href="#__codelineno-11-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Get</span><span class="p">,</span><span class="w"> </span><span class="nx">Header</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@nestjs/common'</span><span class="p">;</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2"></a>
-<a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="nd">@Get</span><span class="p">(</span><span class="s1">'a04'</span><span class="p">)</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="nd">@Header</span><span class="p">(</span><span class="s1">'X-Mon-Entete'</span><span class="p">,</span> <span class="s1">'une-valeur'</span><span class="p">)</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="n">a04</span><span class="p">():</span> <span class="n">string</span> <span class="p">{</span>
-<a id="__codelineno-11-6" name="__codelineno-11-6"></a>  <span class="k">return</span> <span class="s1">'réponse avec un entête personnalisé'</span><span class="p">;</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="kd">@Get</span><span class="p">(</span><span class="s1">'a04'</span><span class="p">)</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="kd">@Header</span><span class="p">(</span><span class="s1">'X-Mon-Entete'</span><span class="p">,</span><span class="w"> </span><span class="s1">'une-valeur'</span><span class="p">)</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="nx">a04</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="s1">'réponse avec un entête personnalisé'</span><span class="p">;</span>
 <a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>Commentons ce code :</p>
@@ -1803,11 +1803,11 @@
 <span class="normal"><a href="#__codelineno-12-2">2</a></span>
 <span class="normal"><a href="#__codelineno-12-3">3</a></span>
 <span class="normal"><a href="#__codelineno-12-4">4</a></span>
-<span class="normal"><a href="#__codelineno-12-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">Get</span><span class="p">,</span> <span class="n">Redirect</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">'@nestjs/common'</span><span class="p">;</span>
+<span class="normal"><a href="#__codelineno-12-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Get</span><span class="p">,</span><span class="w"> </span><span class="nx">Redirect</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@nestjs/common'</span><span class="p">;</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2"></a>
-<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="nd">@Get</span><span class="p">(</span><span class="s1">'a05'</span><span class="p">)</span>
-<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="nd">@Redirect</span><span class="p">(</span><span class="s1">'https://nestjs.com'</span><span class="p">,</span> <span class="mi">302</span><span class="p">)</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="n">a05</span><span class="p">()</span> <span class="p">{}</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="kd">@Get</span><span class="p">(</span><span class="s1">'a05'</span><span class="p">)</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="kd">@Redirect</span><span class="p">(</span><span class="s1">'https://nestjs.com'</span><span class="p">,</span><span class="w"> </span><span class="mf">302</span><span class="p">)</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="nx">a05</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
 </code></pre></div></td></tr></table></div>
 <p>Commentons ce code :</p>
 <ul>
@@ -1858,18 +1858,18 @@
 <span class="normal"><a href="#__codelineno-15-9"> 9</a></span>
 <span class="normal"><a href="#__codelineno-15-10">10</a></span>
 <span class="normal"><a href="#__codelineno-15-11">11</a></span>
-<span class="normal"><a href="#__codelineno-15-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="p">(</span><span class="n">Use</span><span class="w"> </span><span class="o">`</span><span class="n">node</span><span class="w"> </span><span class="c1">--trace-deprecation ...` to show where the warning was created)</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="p">[</span><span class="n">Nest</span><span class="p">]</span><span class="w"> </span><span class="mi">12284</span><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="mi">12</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">2026</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">43</span><span class="w">     </span><span class="n">LOG</span><span class="w"> </span><span class="p">[</span><span class="n">NestFactory</span><span class="p">]</span><span class="w"> </span><span class="n">Starting</span><span class="w"> </span><span class="n">Nest</span><span class="w"> </span><span class="n">application</span><span class="p">...</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="p">[</span><span class="n">Nest</span><span class="p">]</span><span class="w"> </span><span class="mi">12284</span><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="mi">12</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">2026</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">43</span><span class="w">     </span><span class="n">LOG</span><span class="w"> </span><span class="p">[</span><span class="n">InstanceLoader</span><span class="p">]</span><span class="w"> </span><span class="n">AppModule</span><span class="w"> </span><span class="n">dependencies</span><span class="w"> </span><span class="n">initialized</span><span class="w"> </span><span class="o">+</span><span class="mi">4</span><span class="n">ms</span>
-<a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="p">[</span><span class="n">Nest</span><span class="p">]</span><span class="w"> </span><span class="mi">12284</span><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="mi">12</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">2026</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">43</span><span class="w">     </span><span class="n">LOG</span><span class="w"> </span><span class="p">[</span><span class="n">RoutesResolver</span><span class="p">]</span><span class="w"> </span><span class="n">AppController</span><span class="w"> </span><span class="err">{</span><span class="o">/</span><span class="err">}</span><span class="p">:</span><span class="w"> </span><span class="o">+</span><span class="mi">7</span><span class="n">ms</span>
-<a id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="p">[</span><span class="n">Nest</span><span class="p">]</span><span class="w"> </span><span class="mi">12284</span><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="mi">12</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">2026</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">43</span><span class="w">     </span><span class="n">LOG</span><span class="w"> </span><span class="p">[</span><span class="n">RouterExplorer</span><span class="p">]</span><span class="w"> </span><span class="n">Mapped</span><span class="w"> </span><span class="err">{</span><span class="o">/</span><span class="n">a01</span><span class="p">,</span><span class="w"> </span><span class="k">GET</span><span class="err">}</span><span class="w"> </span><span class="n">route</span><span class="w"> </span><span class="o">+</span><span class="mi">2</span><span class="n">ms</span>
-<a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="p">[</span><span class="n">Nest</span><span class="p">]</span><span class="w"> </span><span class="mi">12284</span><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="mi">12</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">2026</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">43</span><span class="w">     </span><span class="n">LOG</span><span class="w"> </span><span class="p">[</span><span class="n">RouterExplorer</span><span class="p">]</span><span class="w"> </span><span class="n">Mapped</span><span class="w"> </span><span class="err">{</span><span class="o">/</span><span class="n">a02</span><span class="p">,</span><span class="w"> </span><span class="k">GET</span><span class="err">}</span><span class="w"> </span><span class="n">route</span><span class="w"> </span><span class="o">+</span><span class="mi">0</span><span class="n">ms</span>
-<a id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="p">[</span><span class="n">Nest</span><span class="p">]</span><span class="w"> </span><span class="mi">12284</span><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="mi">12</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">2026</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">43</span><span class="w">     </span><span class="n">LOG</span><span class="w"> </span><span class="p">[</span><span class="n">RouterExplorer</span><span class="p">]</span><span class="w"> </span><span class="n">Mapped</span><span class="w"> </span><span class="err">{</span><span class="o">/</span><span class="n">a03</span><span class="p">,</span><span class="w"> </span><span class="k">GET</span><span class="err">}</span><span class="w"> </span><span class="n">route</span><span class="w"> </span><span class="o">+</span><span class="mi">0</span><span class="n">ms</span>
-<a id="__codelineno-15-8" name="__codelineno-15-8"></a><span class="p">[</span><span class="n">Nest</span><span class="p">]</span><span class="w"> </span><span class="mi">12284</span><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="mi">12</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">2026</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">43</span><span class="w">     </span><span class="n">LOG</span><span class="w"> </span><span class="p">[</span><span class="n">RouterExplorer</span><span class="p">]</span><span class="w"> </span><span class="n">Mapped</span><span class="w"> </span><span class="err">{</span><span class="o">/</span><span class="n">a04</span><span class="p">,</span><span class="w"> </span><span class="k">GET</span><span class="err">}</span><span class="w"> </span><span class="n">route</span><span class="w"> </span><span class="o">+</span><span class="mi">0</span><span class="n">ms</span>
-<a id="__codelineno-15-9" name="__codelineno-15-9"></a><span class="p">[</span><span class="n">Nest</span><span class="p">]</span><span class="w"> </span><span class="mi">12284</span><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="mi">12</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">2026</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">43</span><span class="w">     </span><span class="n">LOG</span><span class="w"> </span><span class="p">[</span><span class="n">RouterExplorer</span><span class="p">]</span><span class="w"> </span><span class="n">Mapped</span><span class="w"> </span><span class="err">{</span><span class="o">/</span><span class="n">a05</span><span class="p">,</span><span class="w"> </span><span class="k">GET</span><span class="err">}</span><span class="w"> </span><span class="n">route</span><span class="w"> </span><span class="o">+</span><span class="mi">1</span><span class="n">ms</span>
-<a id="__codelineno-15-10" name="__codelineno-15-10"></a><span class="p">[</span><span class="n">Nest</span><span class="p">]</span><span class="w"> </span><span class="mi">12284</span><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="mi">12</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">2026</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">43</span><span class="w">     </span><span class="n">LOG</span><span class="w"> </span><span class="p">[</span><span class="n">RouterExplorer</span><span class="p">]</span><span class="w"> </span><span class="n">Mapped</span><span class="w"> </span><span class="err">{</span><span class="o">/</span><span class="n">a06</span><span class="p">,</span><span class="w"> </span><span class="k">GET</span><span class="err">}</span><span class="w"> </span><span class="n">route</span><span class="w"> </span><span class="o">+</span><span class="mi">0</span><span class="n">ms</span>
-<a id="__codelineno-15-11" name="__codelineno-15-11"></a><span class="p">[</span><span class="n">Nest</span><span class="p">]</span><span class="w"> </span><span class="mi">12284</span><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="mi">12</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">2026</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">43</span><span class="w">     </span><span class="n">LOG</span><span class="w"> </span><span class="p">[</span><span class="n">NestApplication</span><span class="p">]</span><span class="w"> </span><span class="n">Nest</span><span class="w"> </span><span class="n">application</span><span class="w"> </span><span class="n">successfully</span><span class="w"> </span><span class="n">started</span><span class="w"> </span><span class="o">+</span><span class="mi">1</span><span class="n">ms</span>
-<a id="__codelineno-15-12" name="__codelineno-15-12"></a><span class="n">actions</span><span class="o">-</span><span class="n">reponse</span><span class="w"> </span><span class="n">démarré</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">3000</span><span class="o">/</span><span class="n">a01</span><span class="w"> </span><span class="p">..</span><span class="w"> </span><span class="o">/</span><span class="n">a06</span>
+<span class="normal"><a href="#__codelineno-15-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a>(Use `node --trace-deprecation ...` to show where the warning was created)
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a>[Nest] 12284  - 12/09/2026 14:26:43     LOG [NestFactory] Starting Nest application...
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a>[Nest] 12284  - 12/09/2026 14:26:43     LOG [InstanceLoader] AppModule dependencies initialized +4ms
+<a id="__codelineno-15-4" name="__codelineno-15-4"></a>[Nest] 12284  - 12/09/2026 14:26:43     LOG [RoutesResolver] AppController {/}: +7ms
+<a id="__codelineno-15-5" name="__codelineno-15-5"></a>[Nest] 12284  - 12/09/2026 14:26:43     LOG [RouterExplorer] Mapped {/a01, GET} route +2ms
+<a id="__codelineno-15-6" name="__codelineno-15-6"></a>[Nest] 12284  - 12/09/2026 14:26:43     LOG [RouterExplorer] Mapped {/a02, GET} route +0ms
+<a id="__codelineno-15-7" name="__codelineno-15-7"></a>[Nest] 12284  - 12/09/2026 14:26:43     LOG [RouterExplorer] Mapped {/a03, GET} route +0ms
+<a id="__codelineno-15-8" name="__codelineno-15-8"></a>[Nest] 12284  - 12/09/2026 14:26:43     LOG [RouterExplorer] Mapped {/a04, GET} route +0ms
+<a id="__codelineno-15-9" name="__codelineno-15-9"></a>[Nest] 12284  - 12/09/2026 14:26:43     LOG [RouterExplorer] Mapped {/a05, GET} route +1ms
+<a id="__codelineno-15-10" name="__codelineno-15-10"></a>[Nest] 12284  - 12/09/2026 14:26:43     LOG [RouterExplorer] Mapped {/a06, GET} route +0ms
+<a id="__codelineno-15-11" name="__codelineno-15-11"></a>[Nest] 12284  - 12/09/2026 14:26:43     LOG [NestApplication] Nest application successfully started +1ms
+<a id="__codelineno-15-12" name="__codelineno-15-12"></a>actions-reponse démarré : http://localhost:3000/a01 .. /a06
 </code></pre></div></td></tr></table></div>
 <h3 id="852-tests-postman">8.5.2. <span style="color: #2e74b5">Tests Postman</span></h3>
 <p>Pour les tests Postman vous pouvez utiliser la collection de requêtes suivante :</p>
@@ -1983,14 +1983,14 @@
 <span class="normal"><a href="#__codelineno-16-5">5</a></span>
 <span class="normal"><a href="#__codelineno-16-6">6</a></span>
 <span class="normal"><a href="#__codelineno-16-7">7</a></span>
-<span class="normal"><a href="#__codelineno-16-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="o">//</span> <span class="n">src</span><span class="o">/</span><span class="n">app</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">ts</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">Module</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">'@nestjs/common'</span><span class="p">;</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">AppController</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">'./app.controller'</span><span class="p">;</span>
+<span class="normal"><a href="#__codelineno-16-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="c1">// src/app.module.ts</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Module</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@nestjs/common'</span><span class="p">;</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">AppController</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'./app.controller'</span><span class="p">;</span>
 <a id="__codelineno-16-4" name="__codelineno-16-4"></a>
-<a id="__codelineno-16-5" name="__codelineno-16-5"></a><span class="nd">@Module</span><span class="p">({</span>
-<a id="__codelineno-16-6" name="__codelineno-16-6"></a>  <span class="n">controllers</span><span class="p">:</span> <span class="p">[</span><span class="n">AppController</span><span class="p">],</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5"></a><span class="kd">@Module</span><span class="p">({</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="w">  </span><span class="nx">controllers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">AppController</span><span class="p">],</span>
 <a id="__codelineno-16-7" name="__codelineno-16-7"></a><span class="p">})</span>
-<a id="__codelineno-16-8" name="__codelineno-16-8"></a><span class="n">export</span> <span class="k">class</span><span class="w"> </span><span class="nc">AppModule</span> <span class="p">{}</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8"></a><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">AppModule</span><span class="w"> </span><span class="p">{}</span>
 </code></pre></div></td></tr></table></div>
 <p>Même remarque qu’au chapitre précédent : pas de <span style="color: #9a3412">providers</span> ici non plus, ce projet ne définissant aucun service séparé.</p>
 <h4 id="8613-srcmaints">8.6.1.3. <span style="color: #1f4d78">src/main.ts</span></h4>
@@ -2011,24 +2011,24 @@
 <span class="normal"><a href="#__codelineno-17-15">15</a></span>
 <span class="normal"><a href="#__codelineno-17-16">16</a></span>
 <span class="normal"><a href="#__codelineno-17-17">17</a></span>
-<span class="normal"><a href="#__codelineno-17-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="o">//</span> <span class="n">src</span><span class="o">/</span><span class="n">main</span><span class="o">.</span><span class="n">ts</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">ValidationPipe</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">'@nestjs/common'</span><span class="p">;</span>
-<a id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">NestFactory</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">'@nestjs/core'</span><span class="p">;</span>
-<a id="__codelineno-17-4" name="__codelineno-17-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">session</span> <span class="kn">from</span><span class="w"> </span><span class="s1">'express-session'</span><span class="p">;</span>
-<a id="__codelineno-17-5" name="__codelineno-17-5"></a><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">AppModule</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">'./app.module'</span><span class="p">;</span>
+<span class="normal"><a href="#__codelineno-17-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="c1">// src/main.ts</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ValidationPipe</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@nestjs/common'</span><span class="p">;</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">NestFactory</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@nestjs/core'</span><span class="p">;</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4"></a><span class="k">import</span><span class="w"> </span><span class="nx">session</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'express-session'</span><span class="p">;</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">AppModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'./app.module'</span><span class="p">;</span>
 <a id="__codelineno-17-6" name="__codelineno-17-6"></a>
-<a id="__codelineno-17-7" name="__codelineno-17-7"></a><span class="k">async</span> <span class="n">function</span> <span class="n">bootstrap</span><span class="p">()</span> <span class="p">{</span>
-<a id="__codelineno-17-8" name="__codelineno-17-8"></a>  <span class="n">const</span> <span class="n">app</span> <span class="o">=</span> <span class="k">await</span> <span class="n">NestFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">AppModule</span><span class="p">);</span>
-<a id="__codelineno-17-9" name="__codelineno-17-9"></a>  <span class="n">app</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">session</span><span class="p">({</span> <span class="n">secret</span><span class="p">:</span> <span class="s1">'xxx'</span><span class="p">,</span> <span class="n">resave</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span> <span class="n">saveUninitialized</span><span class="p">:</span> <span class="n">false</span> <span class="p">}));</span>
-<a id="__codelineno-17-10" name="__codelineno-17-10"></a>  <span class="n">app</span><span class="o">.</span><span class="n">useGlobalPipes</span><span class="p">(</span>
-<a id="__codelineno-17-11" name="__codelineno-17-11"></a>    <span class="n">new</span> <span class="n">ValidationPipe</span><span class="p">({</span>
-<a id="__codelineno-17-12" name="__codelineno-17-12"></a>      <span class="n">transform</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
-<a id="__codelineno-17-13" name="__codelineno-17-13"></a>      <span class="n">transformOptions</span><span class="p">:</span> <span class="p">{</span> <span class="n">enableImplicitConversion</span><span class="p">:</span> <span class="n">true</span> <span class="p">},</span>
-<a id="__codelineno-17-14" name="__codelineno-17-14"></a>    <span class="p">}),</span>
-<a id="__codelineno-17-15" name="__codelineno-17-15"></a>  <span class="p">);</span>
-<a id="__codelineno-17-16" name="__codelineno-17-16"></a>  <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7"></a><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">bootstrap</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">NestFactory</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">AppModule</span><span class="p">);</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9"></a><span class="w">  </span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">session</span><span class="p">({</span><span class="w"> </span><span class="nx">secret</span><span class="o">:</span><span class="w"> </span><span class="s1">'xxx'</span><span class="p">,</span><span class="w"> </span><span class="nx">resave</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span><span class="w"> </span><span class="nx">saveUninitialized</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="w"> </span><span class="p">}));</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10"></a><span class="w">  </span><span class="nx">app</span><span class="p">.</span><span class="nx">useGlobalPipes</span><span class="p">(</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11"></a><span class="w">    </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValidationPipe</span><span class="p">({</span>
+<a id="__codelineno-17-12" name="__codelineno-17-12"></a><span class="w">      </span><span class="nx">transform</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13"></a><span class="w">      </span><span class="nx">transformOptions</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">enableImplicitConversion</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-17-14" name="__codelineno-17-14"></a><span class="w">    </span><span class="p">}),</span>
+<a id="__codelineno-17-15" name="__codelineno-17-15"></a><span class="w">  </span><span class="p">);</span>
+<a id="__codelineno-17-16" name="__codelineno-17-16"></a><span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mf">3000</span><span class="p">);</span>
 <a id="__codelineno-17-17" name="__codelineno-17-17"></a><span class="p">}</span>
-<a id="__codelineno-17-18" name="__codelineno-17-18"></a><span class="n">bootstrap</span><span class="p">();</span>
+<a id="__codelineno-17-18" name="__codelineno-17-18"></a><span class="nx">bootstrap</span><span class="p">();</span>
 </code></pre></div></td></tr></table></div>
 <p>Commentons ce code :</p>
 <ul>
@@ -2133,17 +2133,17 @@
 <span class="normal"><a href="#__codelineno-24-9"> 9</a></span>
 <span class="normal"><a href="#__codelineno-24-10">10</a></span>
 <span class="normal"><a href="#__codelineno-24-11">11</a></span>
-<span class="normal"><a href="#__codelineno-24-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">IsIn</span><span class="p">,</span> <span class="n">IsInt</span><span class="p">,</span> <span class="n">Min</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">'class-validator'</span><span class="p">;</span>
+<span class="normal"><a href="#__codelineno-24-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">IsIn</span><span class="p">,</span><span class="w"> </span><span class="nx">IsInt</span><span class="p">,</span><span class="w"> </span><span class="nx">Min</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'class-validator'</span><span class="p">;</span>
 <a id="__codelineno-24-2" name="__codelineno-24-2"></a>
-<a id="__codelineno-24-3" name="__codelineno-24-3"></a><span class="n">export</span> <span class="k">class</span><span class="w"> </span><span class="nc">CalculDto</span> <span class="p">{</span>
-<a id="__codelineno-24-4" name="__codelineno-24-4"></a>  <span class="nd">@IsIn</span><span class="p">([</span><span class="s1">'oui'</span><span class="p">,</span> <span class="s1">'non'</span><span class="p">])</span>
-<a id="__codelineno-24-5" name="__codelineno-24-5"></a>  <span class="n">marié</span><span class="p">:</span> <span class="n">string</span><span class="p">;</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3"></a><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">CalculDto</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4"></a><span class="w">  </span><span class="kd">@IsIn</span><span class="p">([</span><span class="s1">'oui'</span><span class="p">,</span><span class="w"> </span><span class="s1">'non'</span><span class="p">])</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5"></a><span class="w">  </span><span class="nx">marié</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
 <a id="__codelineno-24-6" name="__codelineno-24-6"></a>
-<a id="__codelineno-24-7" name="__codelineno-24-7"></a>  <span class="nd">@IsInt</span><span class="p">()</span> <span class="nd">@Min</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<a id="__codelineno-24-8" name="__codelineno-24-8"></a>  <span class="n">enfants</span><span class="p">:</span> <span class="n">number</span><span class="p">;</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7"></a><span class="w">  </span><span class="kd">@IsInt</span><span class="p">()</span><span class="w"> </span><span class="kd">@Min</span><span class="p">(</span><span class="mf">0</span><span class="p">)</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8"></a><span class="w">  </span><span class="nx">enfants</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
 <a id="__codelineno-24-9" name="__codelineno-24-9"></a>
-<a id="__codelineno-24-10" name="__codelineno-24-10"></a>  <span class="nd">@IsInt</span><span class="p">()</span> <span class="nd">@Min</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<a id="__codelineno-24-11" name="__codelineno-24-11"></a>  <span class="n">salaire</span><span class="p">:</span> <span class="n">number</span><span class="p">;</span>
+<a id="__codelineno-24-10" name="__codelineno-24-10"></a><span class="w">  </span><span class="kd">@IsInt</span><span class="p">()</span><span class="w"> </span><span class="kd">@Min</span><span class="p">(</span><span class="mf">0</span><span class="p">)</span>
+<a id="__codelineno-24-11" name="__codelineno-24-11"></a><span class="w">  </span><span class="nx">salaire</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
 <a id="__codelineno-24-12" name="__codelineno-24-12"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>Commentons ce code :</p>
@@ -2158,12 +2158,12 @@
 <span class="normal"><a href="#__codelineno-25-4">4</a></span>
 <span class="normal"><a href="#__codelineno-25-5">5</a></span>
 <span class="normal"><a href="#__codelineno-25-6">6</a></span>
-<span class="normal"><a href="#__codelineno-25-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">Body</span><span class="p">,</span> <span class="n">Post</span><span class="p">,</span> <span class="n">UsePipes</span><span class="p">,</span> <span class="n">ValidationPipe</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">'@nestjs/common'</span><span class="p">;</span>
+<span class="normal"><a href="#__codelineno-25-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Body</span><span class="p">,</span><span class="w"> </span><span class="nx">Post</span><span class="p">,</span><span class="w"> </span><span class="nx">UsePipes</span><span class="p">,</span><span class="w"> </span><span class="nx">ValidationPipe</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@nestjs/common'</span><span class="p">;</span>
 <a id="__codelineno-25-2" name="__codelineno-25-2"></a>
-<a id="__codelineno-25-3" name="__codelineno-25-3"></a><span class="nd">@Post</span><span class="p">(</span><span class="s1">'m05'</span><span class="p">)</span>
-<a id="__codelineno-25-4" name="__codelineno-25-4"></a><span class="nd">@UsePipes</span><span class="p">(</span><span class="n">new</span> <span class="n">ValidationPipe</span><span class="p">())</span>
-<a id="__codelineno-25-5" name="__codelineno-25-5"></a><span class="n">m05</span><span class="p">(</span><span class="nd">@Body</span><span class="p">()</span> <span class="n">données</span><span class="p">:</span> <span class="n">CalculDto</span><span class="p">):</span> <span class="n">CalculDto</span> <span class="p">{</span>
-<a id="__codelineno-25-6" name="__codelineno-25-6"></a>  <span class="k">return</span> <span class="n">données</span><span class="p">;</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3"></a><span class="kd">@Post</span><span class="p">(</span><span class="s1">'m05'</span><span class="p">)</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4"></a><span class="kd">@UsePipes</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nx">ValidationPipe</span><span class="p">())</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5"></a><span class="nx">m05</span><span class="p">(</span><span class="kd">@Body</span><span class="p">()</span><span class="w"> </span><span class="nx">données</span><span class="o">:</span><span class="w"> </span><span class="kt">CalculDto</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">CalculDto</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">données</span><span class="p">;</span>
 <a id="__codelineno-25-7" name="__codelineno-25-7"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>Commentons ce code :</p>
@@ -2194,8 +2194,8 @@
 </code></pre></div>
 <p><span style="color: #9a3412">main.ts</span></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span>
-<span class="normal"><a href="#__codelineno-28-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a>// main.ts
-<a id="__codelineno-28-2" name="__codelineno-28-2"></a>app.use(session({ secret: 'xxx', resave: false, saveUninitialized: false }));
+<span class="normal"><a href="#__codelineno-28-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a><span class="c1">// main.ts</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2"></a><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">session</span><span class="p">({</span><span class="w"> </span><span class="nx">secret</span><span class="o">:</span><span class="w"> </span><span class="s1">'xxx'</span><span class="p">,</span><span class="w"> </span><span class="nx">resave</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span><span class="w"> </span><span class="nx">saveUninitialized</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="w"> </span><span class="p">}));</span>
 </code></pre></div></td></tr></table></div>
 <p>Commentons ce code :</p>
 <ul>
@@ -2207,12 +2207,12 @@
 <span class="normal"><a href="#__codelineno-29-4">4</a></span>
 <span class="normal"><a href="#__codelineno-29-5">5</a></span>
 <span class="normal"><a href="#__codelineno-29-6">6</a></span>
-<span class="normal"><a href="#__codelineno-29-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1"></a><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">Get</span><span class="p">,</span> <span class="n">Session</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">'@nestjs/common'</span><span class="p">;</span>
+<span class="normal"><a href="#__codelineno-29-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Get</span><span class="p">,</span><span class="w"> </span><span class="nx">Session</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@nestjs/common'</span><span class="p">;</span>
 <a id="__codelineno-29-2" name="__codelineno-29-2"></a>
-<a id="__codelineno-29-3" name="__codelineno-29-3"></a><span class="nd">@Get</span><span class="p">(</span><span class="s1">'m07'</span><span class="p">)</span>
-<a id="__codelineno-29-4" name="__codelineno-29-4"></a><span class="n">m07</span><span class="p">(</span><span class="nd">@Session</span><span class="p">()</span> <span class="n">session</span><span class="p">:</span> <span class="n">Record</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="nb">any</span><span class="o">&gt;</span><span class="p">):</span> <span class="nb">object</span> <span class="p">{</span>
-<a id="__codelineno-29-5" name="__codelineno-29-5"></a>  <span class="n">session</span><span class="o">.</span><span class="n">compteur</span> <span class="o">=</span> <span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">compteur</span> <span class="err">??</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-<a id="__codelineno-29-6" name="__codelineno-29-6"></a>  <span class="k">return</span> <span class="p">{</span> <span class="n">compteur</span><span class="p">:</span> <span class="n">session</span><span class="o">.</span><span class="n">compteur</span> <span class="p">};</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3"></a><span class="kd">@Get</span><span class="p">(</span><span class="s1">'m07'</span><span class="p">)</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4"></a><span class="nx">m07</span><span class="p">(</span><span class="kd">@Session</span><span class="p">()</span><span class="w"> </span><span class="nx">session</span><span class="o">:</span><span class="w"> </span><span class="kt">Record</span><span class="o">&lt;</span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">any</span><span class="o">&gt;</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">object</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5"></a><span class="w">  </span><span class="nx">session</span><span class="p">.</span><span class="nx">compteur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">session</span><span class="p">.</span><span class="nx">compteur</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+<a id="__codelineno-29-6" name="__codelineno-29-6"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">compteur</span><span class="o">:</span><span class="w"> </span><span class="kt">session.compteur</span><span class="w"> </span><span class="p">};</span>
 <a id="__codelineno-29-7" name="__codelineno-29-7"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>Commentons ce code :</p>
@@ -2231,12 +2231,12 @@
 <span class="normal"><a href="#__codelineno-30-4">4</a></span>
 <span class="normal"><a href="#__codelineno-30-5">5</a></span>
 <span class="normal"><a href="#__codelineno-30-6">6</a></span>
-<span class="normal"><a href="#__codelineno-30-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1"></a><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">Get</span><span class="p">,</span> <span class="n">Req</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">'@nestjs/common'</span><span class="p">;</span>
-<a id="__codelineno-30-2" name="__codelineno-30-2"></a><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">Request</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">'express'</span><span class="p">;</span>
+<span class="normal"><a href="#__codelineno-30-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Get</span><span class="p">,</span><span class="w"> </span><span class="nx">Req</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@nestjs/common'</span><span class="p">;</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Request</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'express'</span><span class="p">;</span>
 <a id="__codelineno-30-3" name="__codelineno-30-3"></a>
-<a id="__codelineno-30-4" name="__codelineno-30-4"></a><span class="nd">@Get</span><span class="p">(</span><span class="s1">'m08'</span><span class="p">)</span>
-<a id="__codelineno-30-5" name="__codelineno-30-5"></a><span class="n">m08</span><span class="p">(</span><span class="nd">@Req</span><span class="p">()</span> <span class="n">req</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span> <span class="nb">object</span> <span class="p">{</span>
-<a id="__codelineno-30-6" name="__codelineno-30-6"></a>  <span class="k">return</span> <span class="p">{</span> <span class="n">méthode</span><span class="p">:</span> <span class="n">req</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="n">req</span><span class="o">.</span><span class="n">url</span> <span class="p">};</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4"></a><span class="kd">@Get</span><span class="p">(</span><span class="s1">'m08'</span><span class="p">)</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5"></a><span class="nx">m08</span><span class="p">(</span><span class="kd">@Req</span><span class="p">()</span><span class="w"> </span><span class="nx">req</span><span class="o">:</span><span class="w"> </span><span class="kt">Request</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">object</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-30-6" name="__codelineno-30-6"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">méthode</span><span class="o">:</span><span class="w"> </span><span class="kt">req.method</span><span class="p">,</span><span class="w"> </span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="kt">req.url</span><span class="w"> </span><span class="p">};</span>
 <a id="__codelineno-30-7" name="__codelineno-30-7"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>Commentons ce code :</p>
@@ -2387,17 +2387,17 @@
 <span class="normal"><a href="#__codelineno-34-8"> 8</a></span>
 <span class="normal"><a href="#__codelineno-34-9"> 9</a></span>
 <span class="normal"><a href="#__codelineno-34-10">10</a></span>
-<span class="normal"><a href="#__codelineno-34-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1"></a>// app.module.ts
-<a id="__codelineno-34-2" name="__codelineno-34-2"></a>TypeOrmModule.forRoot({
-<a id="__codelineno-34-3" name="__codelineno-34-3"></a>  type: 'mysql',
-<a id="__codelineno-34-4" name="__codelineno-34-4"></a>  host: 'localhost',
-<a id="__codelineno-34-5" name="__codelineno-34-5"></a>  port: 3306,
-<a id="__codelineno-34-6" name="__codelineno-34-6"></a>  username: 'admimpots',
-<a id="__codelineno-34-7" name="__codelineno-34-7"></a>  password: 'mdpimpots',
-<a id="__codelineno-34-8" name="__codelineno-34-8"></a>  database: 'dbimpots-2019',
-<a id="__codelineno-34-9" name="__codelineno-34-9"></a>  entities: [Tranche],
-<a id="__codelineno-34-10" name="__codelineno-34-10"></a>  synchronize: false,
-<a id="__codelineno-34-11" name="__codelineno-34-11"></a>})
+<span class="normal"><a href="#__codelineno-34-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1"></a><span class="c1">// app.module.ts</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2"></a><span class="nx">TypeOrmModule</span><span class="p">.</span><span class="nx">forRoot</span><span class="p">({</span>
+<a id="__codelineno-34-3" name="__codelineno-34-3"></a><span class="w">  </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="s1">'mysql'</span><span class="p">,</span>
+<a id="__codelineno-34-4" name="__codelineno-34-4"></a><span class="w">  </span><span class="nx">host</span><span class="o">:</span><span class="w"> </span><span class="s1">'localhost'</span><span class="p">,</span>
+<a id="__codelineno-34-5" name="__codelineno-34-5"></a><span class="w">  </span><span class="nx">port</span><span class="o">:</span><span class="w"> </span><span class="kt">3306</span><span class="p">,</span>
+<a id="__codelineno-34-6" name="__codelineno-34-6"></a><span class="w">  </span><span class="nx">username</span><span class="o">:</span><span class="w"> </span><span class="s1">'admimpots'</span><span class="p">,</span>
+<a id="__codelineno-34-7" name="__codelineno-34-7"></a><span class="w">  </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="s1">'mdpimpots'</span><span class="p">,</span>
+<a id="__codelineno-34-8" name="__codelineno-34-8"></a><span class="w">  </span><span class="nx">database</span><span class="o">:</span><span class="w"> </span><span class="s1">'dbimpots-2019'</span><span class="p">,</span>
+<a id="__codelineno-34-9" name="__codelineno-34-9"></a><span class="w">  </span><span class="nx">entities</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">Tranche</span><span class="p">],</span>
+<a id="__codelineno-34-10" name="__codelineno-34-10"></a><span class="w">  </span><span class="nx">synchronize</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
+<a id="__codelineno-34-11" name="__codelineno-34-11"></a><span class="p">})</span>
 </code></pre></div></td></tr></table></div>
 <p>Commentons ce code :</p>
 <ul>
@@ -2496,12 +2496,12 @@
 <span class="normal"><a href="#__codelineno-37-3">3</a></span>
 <span class="normal"><a href="#__codelineno-37-4">4</a></span>
 <span class="normal"><a href="#__codelineno-37-5">5</a></span>
-<span class="normal"><a href="#__codelineno-37-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1"></a><span class="nd">@Module</span><span class="p">({</span>
-<a id="__codelineno-37-2" name="__codelineno-37-2"></a>  <span class="n">imports</span><span class="p">:</span> <span class="p">[</span><span class="n">TypeOrmModule</span><span class="o">.</span><span class="n">forFeature</span><span class="p">([</span><span class="n">Tranche</span><span class="p">])],</span>
-<a id="__codelineno-37-3" name="__codelineno-37-3"></a>  <span class="n">providers</span><span class="p">:</span> <span class="p">[</span><span class="n">TranchesService</span><span class="p">],</span>
-<a id="__codelineno-37-4" name="__codelineno-37-4"></a>  <span class="n">controllers</span><span class="p">:</span> <span class="p">[</span><span class="n">TranchesController</span><span class="p">],</span>
+<span class="normal"><a href="#__codelineno-37-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1"></a><span class="kd">@Module</span><span class="p">({</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2"></a><span class="w">  </span><span class="nx">imports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">TypeOrmModule</span><span class="p">.</span><span class="nx">forFeature</span><span class="p">([</span><span class="nx">Tranche</span><span class="p">])],</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3"></a><span class="w">  </span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">TranchesService</span><span class="p">],</span>
+<a id="__codelineno-37-4" name="__codelineno-37-4"></a><span class="w">  </span><span class="nx">controllers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">TranchesController</span><span class="p">],</span>
 <a id="__codelineno-37-5" name="__codelineno-37-5"></a><span class="p">})</span>
-<a id="__codelineno-37-6" name="__codelineno-37-6"></a><span class="n">export</span> <span class="k">class</span><span class="w"> </span><span class="nc">TranchesModule</span> <span class="p">{}</span>
+<a id="__codelineno-37-6" name="__codelineno-37-6"></a><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">TranchesModule</span><span class="w"> </span><span class="p">{}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
 <li>ligne 1 : <strong><span style="color: #9a3412">[@Module({ ... })]</span></strong> — ce décorateur, déjà rencontré précédemment, marque la classe comme un <strong>module</strong> NestJS : une unité qui regroupe des éléments liés entre eux (ici, tout ce qui concerne les tranches d&#x27;imposition) ;</li>
@@ -2569,13 +2569,13 @@
 <span class="normal"><a href="#__codelineno-40-5">5</a></span>
 <span class="normal"><a href="#__codelineno-40-6">6</a></span>
 <span class="normal"><a href="#__codelineno-40-7">7</a></span>
-<span class="normal"><a href="#__codelineno-40-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1"></a><span class="o">//</span> <span class="n">schema</span><span class="o">.</span><span class="n">prisma</span>
-<a id="__codelineno-40-2" name="__codelineno-40-2"></a><span class="n">model</span> <span class="n">Tranche</span> <span class="p">{</span>
-<a id="__codelineno-40-3" name="__codelineno-40-3"></a>  <span class="nb">id</span> <span class="n">Int</span> <span class="nd">@id</span> <span class="nd">@default</span><span class="p">(</span><span class="n">autoincrement</span><span class="p">())</span>
-<a id="__codelineno-40-4" name="__codelineno-40-4"></a>  <span class="n">limites</span> <span class="n">Decimal</span>
-<a id="__codelineno-40-5" name="__codelineno-40-5"></a>  <span class="n">coeffR</span> <span class="n">Decimal</span>
-<a id="__codelineno-40-6" name="__codelineno-40-6"></a>  <span class="n">coeffN</span> <span class="n">Decimal</span>
-<a id="__codelineno-40-7" name="__codelineno-40-7"></a>  <span class="o">@</span><span class="nd">@map</span><span class="p">(</span><span class="s2">"tbtranches"</span><span class="p">)</span>
+<span class="normal"><a href="#__codelineno-40-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1"></a><span class="c1">// schema.prisma</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2"></a><span class="nx">model</span><span class="w"> </span><span class="nx">Tranche</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-40-3" name="__codelineno-40-3"></a><span class="w">  </span><span class="nx">id</span><span class="w"> </span><span class="nx">Int</span><span class="w"> </span><span class="kd">@id</span><span class="w"> </span><span class="kd">@default</span><span class="p">(</span><span class="nx">autoincrement</span><span class="p">())</span>
+<a id="__codelineno-40-4" name="__codelineno-40-4"></a><span class="w">  </span><span class="nx">limites</span><span class="w"> </span><span class="nx">Decimal</span>
+<a id="__codelineno-40-5" name="__codelineno-40-5"></a><span class="w">  </span><span class="nx">coeffR</span><span class="w"> </span><span class="nx">Decimal</span>
+<a id="__codelineno-40-6" name="__codelineno-40-6"></a><span class="w">  </span><span class="nx">coeffN</span><span class="w"> </span><span class="nx">Decimal</span>
+<a id="__codelineno-40-7" name="__codelineno-40-7"></a><span class="w">  </span><span class="err">@</span><span class="kd">@map</span><span class="p">(</span><span class="s2">"tbtranches"</span><span class="p">)</span>
 <a id="__codelineno-40-8" name="__codelineno-40-8"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>Commentons ce code :</p>
@@ -2588,9 +2588,9 @@
 <p>Le fichier [tranches.service.ts] est le suivant :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-41-1">1</a></span>
 <span class="normal"><a href="#__codelineno-41-2">2</a></span>
-<span class="normal"><a href="#__codelineno-41-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1"></a>const tranches = await this.prisma.tranche.findMany({
-<a id="__codelineno-41-2" name="__codelineno-41-2"></a>  orderBy: { id: 'asc' },
-<a id="__codelineno-41-3" name="__codelineno-41-3"></a>});
+<span class="normal"><a href="#__codelineno-41-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">tranches</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">prisma</span><span class="p">.</span><span class="nx">tranche</span><span class="p">.</span><span class="nx">findMany</span><span class="p">({</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2"></a><span class="w">  </span><span class="nx">orderBy</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">'asc'</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-41-3" name="__codelineno-41-3"></a><span class="p">});</span>
 </code></pre></div></td></tr></table></div>
 <p>Commentons ce code :</p>
 <ul>
